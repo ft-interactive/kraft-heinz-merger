@@ -1,4 +1,9 @@
 @import 'o-colors/main';
+
+@function getColor($args...) {
+  @return oColorsGetPaletteColor($args...);
+}
+
 @import 'components/core/main';
 
 /*

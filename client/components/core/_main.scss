@@ -68,13 +68,12 @@ $share-button-size: 38px;
 }
 
 .graphic {
-
   display: block;
-  max-width: 100%;
   margin: 0 auto;
   padding: 0;
   box-sizing: border-box;
   width: 100%;
+  max-width: 900px;
 
   & > img,
   & > svg {
@@ -91,6 +90,40 @@ $share-button-size: 38px;
     max-width: 700px;
   }
 
+}
+
+#userinput-container {
+  border: 1px solid getColor('pink-tint3');
+  padding: 1em;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  label {
+    display: block;
+    margin-top: 1em;
+  }
+
+  input[type="range"] {
+    width: 100%;
+  }
+
+  .userinput-container__component {
+    display: inline-block;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+
+#output-wrapper {
+  margin-bottom: 3em;
+
+  img {
+    width: 100%;
+  }
 }
 
 .enhanced .o-date {opacity: 0;}

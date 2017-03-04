@@ -975,6 +975,13 @@ babel-runtime@^6.18.0, babel-runtime@^6.22.0, babel-runtime@^6.6.1:
     core-js "^2.4.0"
     regenerator-runtime "^0.10.0"
 
+babel-runtime@^6.23.0:
+  version "6.23.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.10.0"
+
 babel-template@^6.22.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-template/-/babel-template-6.22.0.tgz#403d110905a4626b317a2a1fcb8f3b73204b2edb"
@@ -3049,11 +3056,11 @@ fstream@^1.0.0, fstream@^1.0.2, fstream@~1.0.10, fstream@~1.0.2:
     mkdirp ">=0.5 0"
     rimraf "2"
 
-ft-graphics-deploy@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ft-graphics-deploy/-/ft-graphics-deploy-0.0.5.tgz#bd90abfd27a57f4e8e506b782df75a3b9318adac"
+ft-graphics-deploy@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/ft-graphics-deploy/-/ft-graphics-deploy-0.1.0.tgz#2409a20c31197cedb536d8477278b426e86a58c7"
   dependencies:
-    babel-runtime "^6.22.0"
+    babel-runtime "^6.23.0"
     chalk "^1.1.3"
     dotenv "^4.0.0"
     execa "^0.6.0"
@@ -4883,11 +4890,11 @@ multipipe@^0.1.2:
   dependencies:
     duplexer2 "0.0.2"
 
-mute-stream@0.0.4, mute-stream@~0.0.4:
+mute-stream@0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.4.tgz#a9219960a6d5d5d046597aee51252c6655f7177e"
 
-mute-stream@0.0.5:
+mute-stream@0.0.5, mute-stream@~0.0.4:
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.5.tgz#8fbfabb0a98a253d3184331f9e8deb7372fac6c0"
 

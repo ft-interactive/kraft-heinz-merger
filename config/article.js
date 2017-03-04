@@ -11,20 +11,19 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'Politics and the English Language',
+  headline: 'Five companies Kraft could try to buy next',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Political language is designed to make lies sound truthful' +
-           'and murder respectable, and to give an appearance of solidity to pure wind',
+  summary: 'Kraft sets its sights on smaller targets after failing to acquire Unilever',
 
   topic: {
-    name: 'Starter Kit',
-    url: '/foo',
+    name: 'Personal & Household Goods',
+    url: 'https://www.ft.com/stream/sectionsId/NDc=-U2VjdGlvbnM=',
   },
 
   relatedArticle: {
-    text: 'Related article »',
-    url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
+    // text: 'Related article »',
+    // url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
   },
 
   mainImage: {
