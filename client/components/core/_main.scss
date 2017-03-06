@@ -67,6 +67,12 @@ $share-button-size: 38px;
   }
 }
 
+.inline-graphic {
+  max-width: 625px;
+  margin: 1em auto;
+  padding: 0 0.75em;
+}
+
 .graphic {
   display: block;
   margin: 0 auto;
