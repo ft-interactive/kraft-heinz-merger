@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import * as d3 from 'd3';
 import * as expander from 'o-expander'; // eslint-disable-line
 
-import EnterpriseValue from './components/enterprise-value';
+import Card from './components/card';
 import Range from './components/range';
 
 class App extends Component {
@@ -36,7 +36,10 @@ class App extends Component {
 
     return (
       <div>
-        <EnterpriseValue data={this.state.data} />
+        <Card
+          data={this.state.data}
+          headline={'Kraft is likely to look for a company with an enterprise value between $40bn and $100bn'}
+        />
         <div className="graphic" id="userinput-wrapper">
           <div id="userinput-container">
             <h2 className="o-typography-heading3">Make your own predictions</h2>
