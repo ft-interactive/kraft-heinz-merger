@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
+import * as d3 from 'd3';
 import * as expander from 'o-expander'; // eslint-disable-line
+
 import EnterpriseValue from './components/enterprise-value';
 import Range from './components/range';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: [],
+    };
+  }
+
   componentDidMount() {
     expander.init(null, {});
   }
 
   render() {
+    const dataSource = 'data/data.tsv';
+    d3.tsv(dataSource, (d) => {
+      d = d.map(d => {
+        return {
+          key: d.key,
+          values: d,
+        };
+      });
+
+      this.setState({
+        data: d,
+      });
+    });
+
     return (
       <div>
-        <EnterpriseValue />
+        <EnterpriseValue data={this.state.data} />
         <div className="graphic" id="userinput-wrapper">
           <div id="userinput-container">
             <h2 className="o-typography-heading3">Make your own predictions</h2>

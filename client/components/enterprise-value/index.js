@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import * as d3 from 'd3';
 
 import Card from '../../components/card';
 
 class EnterpriseValue extends Card {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div className="inline-graphic" id="chart-enterprise-value">
