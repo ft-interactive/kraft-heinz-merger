@@ -13,13 +13,7 @@ class App extends Component {
     this.state = {
       data: [],
     };
-  }
 
-  componentDidMount() {
-    expander.init(null, {});
-  }
-
-  render() {
     const dataSource = 'data/data.tsv';
     d3.tsv(dataSource, (d) => {
       d = d.map(d => {
@@ -33,7 +27,13 @@ class App extends Component {
         data: d,
       });
     });
+  }
 
+  componentDidMount() {
+    expander.init(null, {});
+  }
+
+  render() {
     return (
       <div>
         <Card

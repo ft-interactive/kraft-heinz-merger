@@ -9,6 +9,8 @@ class ColumnChart extends Component {
     this.state = {
       // Placeholder content displayed before chart render
       chart: 'Loading chart…',
+      width: 600,
+      height: 500,
     };
 
     for (const mixin in ReactFauxDOM.mixins.anim) { // eslint-disable-line
@@ -25,11 +27,47 @@ class ColumnChart extends Component {
   }
 
   componentDidMount() {
-    const faux = this.connectFauxDOM('div.renderedD3', 'chart');
+    console.log(this.props.data);
+    const data = this.props.data.map(data => {
+      const value = data['Current stock price'] * data['shares outstanding'] + data['Net Debt'] + data['Minority Interest'];
+      return {
+        category: data.key,
+        value,
+      }
+    });
 
-    d3.select(faux)
-      .append('div')
-      .html('Hello World!');
+    console.log(data);
+
+    const chart = this.connectFauxDOM('svg', 'chart');
+    const margin = { // Mike Bostock's margin convention
+      top: 20,
+      right: 28,
+      bottom: 30,
+      left: 0,
+    };
+    const width = this.state.width - margin.left - margin.right;
+    const height = ((this.state.height - margin.top) - margin.bottom) + 14;
+    const yDomainMax = (5 * Math.ceil(d3.max(data) / 5)) + 5;
+    const x1 = d3.scaleLinear()
+        .domain([0, 100])
+        .range([0, width]);
+    const y = d3.scaleLinear()
+        .domain([0, yDomainMax])
+        .range([height, 0]);
+    const xAxis = d3.axisBottom()
+        .scale(x1)
+        .ticks(10)
+        .tickSizeOuter(0);
+    const yAxis = d3.axisRight()
+        .scale(y)
+        .tickValues([Math.ceil(yDomainMax / 2), yDomainMax])
+        .tickFormat(d => `${d}%`)
+        .tickSize(width, 0);
+
+    const svg = d3.select(chart)
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', 0)
+        .attr('class', 'column-chart');
 
     this.animateFauxDOM(800);
   }
@@ -45,5 +83,9 @@ class ColumnChart extends Component {
     );
   }
 }
+
+ColumnChart.propTypes = {
+  data: React.PropTypes.array,
+};
 
 export default ColumnChart;
