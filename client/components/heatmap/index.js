@@ -29,9 +29,31 @@ class Heatmap extends Component {
   }
 
   render() {
+    const heatmapData = this.props.data.map(d =>
+      <tr>
+        <td>{d.raw.fullName}</td>
+        <td>{d.epsAccretion}</td>
+        <td>{d.debtEBITDA}</td>
+        <td>{d.buffett3GOwnership}</td>
+      </tr>,
+    );
+
     return (
       <div>
         <img src="images/demo-heatmap.png" alt="chart" />
+        <table>
+          <thead>
+            <tr>
+              <th />
+              <th>EPS Accretion</th>
+              <th>Debt to EBITDA</th>
+              <th>Buffett/3G Ownership</th>
+            </tr>
+          </thead>
+          <tbody>
+            {heatmapData}
+          </tbody>
+        </table>
       </div>
     );
   }

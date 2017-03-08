@@ -18,9 +18,9 @@ class App extends Component {
 
     this.state.data = this.state.constantData.map((d) => {
       const enterpriseValue = (d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest'];
-      const epsAccretion = Math.random() * 100;
-      const debtEBITDA = Math.random() * 100;
-      const buffett3GOwnership = Math.random() * 100;
+      const epsAccretion = Math.round(Math.random() * 100);
+      const debtEBITDA = Math.round(Math.random() * 100);
+      const buffett3GOwnership = Math.round(Math.random() * 100);
 
       return {
         category: d.key,
