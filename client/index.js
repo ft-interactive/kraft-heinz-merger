@@ -12,8 +12,13 @@ class App extends Component {
 
     this.state = {
       // eslint-disable-next-line
-      constantData: [{"key":"MDLZ","fullName":"Mondelez International, Inc.","Current stock price":44.97,"shares outstanding":1544.4,"Net Debt":15458,"Minority Interest":54,"2017E Sales":25852,"2018E Sales":26421,"2019E Sales":27199,"2017E EBITDA":5102,"2018E EBITDA":5480,"2019E EBITDA":5791,"2017E EPS":2.1,"2018E EPS":2.33,"2019E EPS":2.55,"2017E SG&A":6532,"USD/ Euro exchange rate":1},{"key":"K","fullName":"Kellogg Company","Current stock price":74.74,"shares outstanding":353.7,"Net Debt":7487,"Minority Interest":16,"2017E Sales":12652,"2018E Sales":12671,"2019E Sales":12740,"2017E EBITDA":2627,"2018E EBITDA":2780,"2019E EBITDA":2866,"2017E EPS":3.95,"2018E EPS":4.35,"2019E EPS":4.59,"2017E SG&A":3200,"USD/ Euro exchange rate":1},{"key":"CL","fullName":"Colgate-Palmolive Company","Current stock price":73.18,"shares outstanding":888.8,"Net Debt":5146,"Minority Interest":260,"2017E Sales":15468,"2018E Sales":16156,"2019E Sales":16805,"2017E EBITDA":4518,"2018E EBITDA":4836,"2019E EBITDA":5168,"2017E EPS":2.9,"2018E EPS":3.17,"2019E EPS":3.37,"2017E SG&A":5172,"USD/ Euro exchange rate":1},{"key":"KMB","fullName":"Kimberly-Clark Corporation","Current stock price":134.64,"shares outstanding":358,"Net Debt":6707,"Minority Interest":219,"2017E Sales":18309,"2018E Sales":18944,"2019E Sales":19619,"2017E EBITDA":4204,"2018E EBITDA":4415,"2019E EBITDA":4617,"2017E EPS":6.28,"2018E EPS":6.75,"2019E EPS":7.2,"2017E SG&A":3294,"USD/ Euro exchange rate":1},{"key":"CLX","fullName":"The Clorox Company","Current stock price":135.44,"shares outstanding":130.8,"Net Debt":2135,"Minority Interest":0,"2017E Sales":6063,"2018E Sales":6245,"2019E Sales":6479,"2017E EBITDA":1329,"2018E EBITDA":1397,"2019E EBITDA":1444,"2017E EPS":5.58,"2018E EPS":5.89,"2019E EPS":6.29,"2017E SG&A":1420,"USD/ Euro exchange rate":1},{"key":"CPB","fullName":"Campbell Soup Company","Current stock price":58.95,"shares outstanding":307.2,"Net Debt":3169,"Minority Interest":0,"2017E Sales":8003,"2018E Sales":8088,"2019E Sales":8139,"2017E EBITDA":1856,"2018E EBITDA":1906,"2019E EBITDA":1945,"2017E EPS":3.12,"2018E EPS":3.34,"2019E EPS":3.49,"2017E SG&A":1474,"USD/ Euro exchange rate":1},{"key":"ENXTAM:UNA","fullName":"Unilever N.V.","Current stock price":42.7,"shares outstanding":2839.7,"Net Debt":12614,"Minority Interest":626,"2017E Sales":55285,"2018E Sales":57485,"2019E Sales":60295,"2017E EBITDA":10224,"2018E EBITDA":10963,"2019E EBITDA":11767,"2017E EPS":2.01,"2018E EPS":2.19,"2019E EPS":2.38,"2017E SG&A":14400,"USD/ Euro exchange rate":1.06},{"key":"KHC","fullName":"The Kraft Heinz Company","Current stock price":94.87,"shares outstanding":1230.1,"Net Debt":28200,"Minority Interest":216,"2017E Sales":26672,"2018E Sales":27202,"2019E Sales":27888,"2017E EBITDA":8392,"2018E EBITDA":8915,"2019E EBITDA":9259,"2017E EPS":3.76,"2018E EPS":4.16,"2019E EPS":4.37,"2017E SG&A":null,"USD/ Euro exchange rate":null}],
+      constantData: [{"key":"MDLZ","fullName":"Mondelez International, Inc.","Current stock price":44.97,"shares outstanding":1544.4,"Net Debt":15458,"Minority Interest":54,"2017E Sales":25852,"2018E Sales":26421,"2019E Sales":27199,"2017E EBITDA":5102,"2018E EBITDA":5480,"2019E EBITDA":5791,"2017E EPS":2.1,"2018E EPS":2.33,"2019E EPS":2.55,"2017E SG&A":6532,"USD/ Euro exchange rate":1},{"key":"K","fullName":"Kellogg Company","Current stock price":74.74,"shares outstanding":353.7,"Net Debt":7487,"Minority Interest":16,"2017E Sales":12652,"2018E Sales":12671,"2019E Sales":12740,"2017E EBITDA":2627,"2018E EBITDA":2780,"2019E EBITDA":2866,"2017E EPS":3.95,"2018E EPS":4.35,"2019E EPS":4.59,"2017E SG&A":3200,"USD/ Euro exchange rate":1},{"key":"CL","fullName":"Colgate-Palmolive Company","Current stock price":73.18,"shares outstanding":888.8,"Net Debt":5146,"Minority Interest":260,"2017E Sales":15468,"2018E Sales":16156,"2019E Sales":16805,"2017E EBITDA":4518,"2018E EBITDA":4836,"2019E EBITDA":5168,"2017E EPS":2.9,"2018E EPS":3.17,"2019E EPS":3.37,"2017E SG&A":5172,"USD/ Euro exchange rate":1},{"key":"KMB","fullName":"Kimberly-Clark Corporation","Current stock price":134.64,"shares outstanding":358,"Net Debt":6707,"Minority Interest":219,"2017E Sales":18309,"2018E Sales":18944,"2019E Sales":19619,"2017E EBITDA":4204,"2018E EBITDA":4415,"2019E EBITDA":4617,"2017E EPS":6.28,"2018E EPS":6.75,"2019E EPS":7.2,"2017E SG&A":3294,"USD/ Euro exchange rate":1},{"key":"CLX","fullName":"The Clorox Company","Current stock price":135.44,"shares outstanding":130.8,"Net Debt":2135,"Minority Interest":0,"2017E Sales":6063,"2018E Sales":6245,"2019E Sales":6479,"2017E EBITDA":1329,"2018E EBITDA":1397,"2019E EBITDA":1444,"2017E EPS":5.58,"2018E EPS":5.89,"2019E EPS":6.29,"2017E SG&A":1420,"USD/ Euro exchange rate":1},{"key":"CPB","fullName":"Campbell Soup Company","Current stock price":58.95,"shares outstanding":307.2,"Net Debt":3169,"Minority Interest":0,"2017E Sales":8003,"2018E Sales":8088,"2019E Sales":8139,"2017E EBITDA":1856,"2018E EBITDA":1906,"2019E EBITDA":1945,"2017E EPS":3.12,"2018E EPS":3.34,"2019E EPS":3.49,"2017E SG&A":1474,"USD/ Euro exchange rate":1},{"key":"ENXTAM:UNA","fullName":"Unilever N.V.","Current stock price":42.695,"shares outstanding":2839.7,"Net Debt":12614,"Minority Interest":626,"2017E Sales":55285,"2018E Sales":57485,"2019E Sales":60295,"2017E EBITDA":10224,"2018E EBITDA":10963,"2019E EBITDA":11767,"2017E EPS":2.01,"2018E EPS":2.19,"2019E EPS":2.38,"2017E SG&A":14400,"USD/ Euro exchange rate":1.06}],
+      // eslint-disable-next-line
+      kraftConstantData: [{"key":"KHC","fullName":"The Kraft Heinz Company","Current stock price":94.87,"shares outstanding":1230.1,"Net Debt":28200,"Minority Interest":216,"2017E Sales":26672,"2018E Sales":27202,"2019E Sales":27888,"2017E EBITDA":8392,"2018E EBITDA":8915,"2019E EBITDA":9259,"2017E EPS":3.76,"2018E EPS":4.16,"2019E EPS":4.37,"2017E SG&A":null,"USD/ Euro exchange rate":null}],
       data: [],
+      premium: 25,
+      buffettContribution: 25,
+      stockConsideration: 25,
     };
 
     this.state.data = this.state.constantData.map((d) => {
@@ -30,7 +35,7 @@ class App extends Component {
         buffett3GOwnership,
         raw: d,
       };
-    }).filter(d => d.category !== 'KHC').sort((a, b) => b.enterpriseValue - a.enterpriseValue);
+    }).sort((a, b) => b.enterpriseValue - a.enterpriseValue);
 
     this.updateHeatmap = this.updateHeatmap.bind(this);
   }
@@ -39,8 +44,41 @@ class App extends Component {
     expander.init(null, {});
   }
 
-  updateHeatmap() {
-    console.log('update heatmap');
+  updateHeatmap(label, value) {
+    console.log('update heatmap', label, value);
+
+    this.setState({
+      premium: (label === 'premium' ? value : this.state.premium),
+      buffettContribution: (label === 'buffett' ? value : this.state.buffettContribution),
+      stockConsideration: (label === 'stock' ? value : this.state.stockConsideration),
+    })
+
+    const premium = this.state.premium;
+    const buffettContribution = this.state.buffettContribution;
+    const stockConsideration = this.state.stockConsideration;
+
+    // @TODO: Fill out this math
+    // const data = this.state.data;
+    // data.forEach((d) => {
+    //   const epsAccretion = Math.round(Math.random() * 100);
+    //
+    //   // debtEBITDAA = Kraft standalone debt + target standalone net debt + [ (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count)- Berkshire-3G contribution- ( (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count* % stock consideration)]
+    //   // const debtEBITDAA = this.state.kraftConstantData[0]['Net Debt'] + d.raw['Net Debt'] + [ ( d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate'] * ( 1 + premium) * shareCount ) - buffettContribution - ( d.raw['Current stock price'] * d.raw['share outstanding'] * d.raw['USD/ Euro exchange rate']) * ( 1 + premium ) * shareCount / stockConsideration ) ];
+    //   const debtEBITDAA = 0;
+    //   // debtEBITDAB = Kraft 2017E EBITDA + Target 2017E EBITDA
+    //   const debtEBITDAB = this.state.kraftConstantData[0]['2017E EBITDA'] + d.raw['2017E EBITDA'];
+    //   const debtEBITDA = debtEBITDAA / debtEBITDAB;
+    //
+    //   const buffett3GOwnershipA = 0;
+    //   const buffett3GOwnershipB = buffettContribution / this.state.kraftConstantData[0]['Current stock price'];
+    //   const buffett3GOwnershipC = 0;
+    //   const buffett3GOwnership = buffett3GOwnershipA + buffett3GOwnershipB + buffett3GOwnershipC;
+    //
+    //
+    //   d.epsAccretion = epsAccretion;
+    //   d.debtEBITDA = debtEBITDA;
+    //   d.buffett3GOwnership = buffett3GOwnership;
+    // });
 
     const data = this.state.data;
     data.forEach((d) => {
