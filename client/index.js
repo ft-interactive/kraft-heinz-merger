@@ -18,9 +18,9 @@ class App extends Component {
 
     this.state.data = this.state.constantData.map((d) => {
       const enterpriseValue = (d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest'];
-      const epsAccretion = null;
-      const debtEBITDA = null;
-      const buffett3GOwnership = null;
+      const epsAccretion = Math.random() * 100;
+      const debtEBITDA = Math.random() * 100;
+      const buffett3GOwnership = Math.random() * 100;
 
       return {
         category: d.key,
@@ -47,6 +47,36 @@ class App extends Component {
     const enterpriseValueData = this.state.data.map((d) => {
       const cat = d.category;
       const value = d.enterpriseValue;
+
+      return {
+        category: cat,
+        value,
+      };
+    });
+
+    const epsAccretionData = this.state.data.map((d) => {
+      const cat = d.category;
+      const value = d.epsAccretion;
+
+      return {
+        category: cat,
+        value,
+      };
+    });
+
+    const buffett3GOwnershipData = this.state.data.map((d) => {
+      const cat = d.category;
+      const value = d.buffett3GOwnership;
+
+      return {
+        category: cat,
+        value,
+      };
+    });
+
+    const debtEBITDAData = this.state.data.map((d) => {
+      const cat = d.category;
+      const value = d.debtEBITDA;
 
       return {
         category: cat,
@@ -139,7 +169,7 @@ class App extends Component {
         <div id="output-wrapper">
           <div className="output-container">
             <Card
-              data={enterpriseValueData}
+              data={debtEBITDAData}
               text={"This is some dummy text"}
               headline={'1. Debt v EBITDA — Best value: Mondelez'}
             />
@@ -147,14 +177,14 @@ class App extends Component {
 
           <div className="output-container">
             <Card
-              data={enterpriseValueData}
+              data={buffett3GOwnershipData}
               text={"This is some more dummy text"}
-              headline={'2. Enterprise value — Best value: Colgate'}
+              headline={'2. Buffett/3G ownership — Best value: Colgate'}
             />
           </div>
           <div className="output-container">
           <Card
-            data={enterpriseValueData}
+            data={epsAccretionData}
             text={"This is even more dummy text"}
             headline={'3. 2018 EPS Accretion to Kraft — Best value: Clorox'}
           />
