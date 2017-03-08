@@ -41,6 +41,17 @@ class App extends Component {
 
   updateHeatmap() {
     console.log('update heatmap');
+
+    const data = this.state.data;
+    data.forEach((d) => {
+      d.epsAccretion = Math.round(Math.random() * 100);
+      d.debtEBITDA = Math.round(Math.random() * 100);
+      d.buffett3GOwnership = Math.round(Math.random() * 100);
+    });
+
+    this.setState({
+      data,
+    });
   }
 
   render() {
