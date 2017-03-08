@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactFauxDOM from 'react-faux-dom';
 import * as d3 from 'd3';
+import throttle from 'lodash/throttle';
 
 class ColumnChart extends Component {
   constructor(props) {
@@ -12,6 +13,9 @@ class ColumnChart extends Component {
       width: 600,
       height: 300,
     };
+
+    this.handleResize = this.handleResize.bind(this);
+    this.drawChart = this.drawChart.bind(this);
 
     for (const mixin in ReactFauxDOM.mixins.anim) { // eslint-disable-line
       if ({}.hasOwnProperty.call(ReactFauxDOM.mixins.anim, mixin)) {
@@ -27,6 +31,13 @@ class ColumnChart extends Component {
   }
 
   componentDidMount() {
+    this.drawChart();
+
+    // Add window resize event listener
+    window.addEventListener('resize', throttle(this.handleResize, 750));
+  }
+
+  drawChart() {
     // console.log(this.props.data);
     // const data = this.props.data.map((d) => {
     //   const value = (d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest'];
@@ -140,10 +151,23 @@ class ColumnChart extends Component {
     this.animateFauxDOM(800);
   }
 
+  handleResize() {
+    // Repeat height calculation with fallback value as above
+    const calculatedHeight = (this.node.offsetWidth / 3.2) + 14;
+    const height = calculatedHeight < 125 ? 125 : calculatedHeight;
+
+    this.setState({
+      width: this.node.offsetWidth,
+      height,
+    });
+
+    this.drawChart();
+  }
+
   render() {
     return (
       <div>
-        <div className="renderedD3">
+        <div className="renderedD3" ref={node => { this.node = node; }}>
           {this.state.chart}
         </div>
       </div>
