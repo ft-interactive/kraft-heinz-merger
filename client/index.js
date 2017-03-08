@@ -180,25 +180,25 @@ class App extends Component {
         <div id="output-wrapper">
           <div className="output-container">
             <Card
-              data={debtEBITDAData}
-              text={"This is some dummy text"}
-              headline={'1. Debt v EBITDA — Best value: Mondelez'}
+              data={epsAccretionData}
+              text={'This is even more dummy text'}
+              headline={'1. 2018 EPS Accretion to Kraft — Best value: Clorox'}
             />
           </div>
 
           <div className="output-container">
             <Card
-              data={buffett3GOwnershipData}
-              text={"This is some more dummy text"}
-              headline={'2. Buffett/3G ownership — Best value: Colgate'}
+              data={debtEBITDAData}
+              text={'This is some dummy text'}
+              headline={'2. Debt v EBITDA — Best value: Mondelez'}
             />
           </div>
           <div className="output-container">
-          <Card
-            data={epsAccretionData}
-            text={"This is even more dummy text"}
-            headline={'3. 2018 EPS Accretion to Kraft — Best value: Clorox'}
-          />
+            <Card
+              data={buffett3GOwnershipData}
+              text={'This is some more dummy text'}
+              headline={'3. Buffett/3G ownership — Best value: Colgate'}
+            />
           </div>
         </div>
       </div>
