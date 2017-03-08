@@ -5,6 +5,7 @@ import * as expander from 'o-expander'; // eslint-disable-line
 
 import Card from './components/card';
 import Range from './components/range';
+import Heatmap from './components/heatmap';
 
 class App extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ class App extends Component {
                 />
               </div>
               <div className="userinput-container__component" id="userinput-output" data-o-grid-colspan="12 M6">
-                <img src="images/demo-heatmap.png" alt="heatmap" />
+                <Heatmap data={this.state.data} />
               </div>
             </div>
             <div className="o-grid-row">
