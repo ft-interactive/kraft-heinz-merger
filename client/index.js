@@ -14,24 +14,19 @@ class App extends Component {
     this.state = {
       data: [],
     };
-
-    const dataSource = 'data/data.tsv';
-    d3.tsv(dataSource, (d) => {
-      d = d.map(d => {
-        return {
-          key: d.key,
-          values: d,
-        };
-      });
-
-      this.setState({
-        data: d,
-      });
-    });
   }
 
   componentDidMount() {
     expander.init(null, {});
+
+    fetch('data/data.tsv')
+      .then(res => res.text())
+      .then(data => this.setState({
+        data: d3.tsvParse(data),
+      }))
+      .catch((e) => {
+        console.log('Error fetching data', e);
+      });
   }
 
   render() {
