@@ -38,13 +38,7 @@ class ColumnChart extends Component {
   }
 
   drawChart() {
-    const data = this.props.data.map((d) => {
-      const value = (d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest'];
-      return {
-        category: d.key,
-        value,
-      };
-    });
+    const data = this.props.data;
 
     const chart = this.connectFauxDOM('svg', 'chart');
     const margin = { // Mike Bostock's margin convention
