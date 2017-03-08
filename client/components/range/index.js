@@ -93,7 +93,7 @@ class Range extends Component {
 
           <div className="range-container">
             <div className="range-labels range-labels-min">
-              <span>{this.props.min}%</span>
+              <span>{this.props.min}{this.props.unit}</span>
             </div>
 
             <div
@@ -115,12 +115,12 @@ class Range extends Component {
                 style={{ left: `${this.state.rangeOverlayPosition}px` }}
                 ref={(node) => { this.output = node; }}
               >
-                {this.state.value > 0 ? `${this.state.value}%` : this.state.value}
+                {`${this.state.value}${this.props.unit}`}
               </output>
             </div>
 
             <div className="range-labels range-labels-max">
-              <span>{this.props.max}%</span>
+              <span>{this.props.max}{this.props.unit}</span>
             </div>
           </div>
 
@@ -161,6 +161,7 @@ Range.propTypes = {
   max: React.PropTypes.number,
   increments: React.PropTypes.number,
   step: React.PropTypes.number,
+  unit: React.PropTypes.string,
   label: React.PropTypes.string,
   labelName: React.PropTypes.string,
   thumbWidth: React.PropTypes.number,

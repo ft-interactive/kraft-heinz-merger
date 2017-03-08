@@ -59,43 +59,47 @@ class App extends Component {
       stockConsideration: (label === 'stock' ? value : this.state.stockConsideration),
     })
 
-    const premium = this.state.premium;
+    const premium = this.state.premium / 100; // needs to be in decimal format
     const buffettContribution = this.state.buffettContribution;
-    const stockConsideration = this.state.stockConsideration;
+    const stockConsideration = this.state.stockConsideration / 100; // needs to be in decimal format
 
     // @TODO: Fill out this math
-    // const data = this.state.data;
-    // data.forEach((d) => {
-    //   const epsAccretion = Math.round(Math.random() * 100);
-    //
-    //   // debtEBITDAA = Kraft standalone debt + target standalone net debt + [ (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count)- Berkshire-3G contribution- ( (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count* % stock consideration)]
-    //   // const debtEBITDAA = this.state.kraftConstantData[0]['Net Debt'] + d.raw['Net Debt'] + [ ( d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate'] * ( 1 + premium) * shareCount ) - buffettContribution - ( d.raw['Current stock price'] * d.raw['share outstanding'] * d.raw['USD/ Euro exchange rate']) * ( 1 + premium ) * shareCount / stockConsideration ) ];
-    //   const debtEBITDAA = 0;
-    //   // debtEBITDAB = Kraft 2017E EBITDA + Target 2017E EBITDA
-    //   const debtEBITDAB = this.state.kraftConstantData[0]['2017E EBITDA'] + d.raw['2017E EBITDA'];
-    //   const debtEBITDA = debtEBITDAA / debtEBITDAB;
-    //
-    //   const buffett3GOwnershipA = 0;
-    //   const buffett3GOwnershipB = buffettContribution / this.state.kraftConstantData[0]['Current stock price'];
-    //   const buffett3GOwnershipC = 0;
-    //   const buffett3GOwnership = buffett3GOwnershipA + buffett3GOwnershipB + buffett3GOwnershipC;
-    //
-    //
-    //   d.epsAccretion = epsAccretion;
-    //   d.debtEBITDA = debtEBITDA;
-    //   d.buffett3GOwnership = buffett3GOwnership;
-    // });
-
     const data = this.state.data;
     data.forEach((d) => {
-      d.epsAccretion = Math.round(Math.random() * 100);
-      d.debtEBITDA = Math.round(Math.random() * 100);
-      d.buffett3GOwnership = Math.round(Math.random() * 100);
+      const epsAccretion = Math.round(Math.random() * 100);
+
+      // debtEBITDAA = Kraft standalone debt + target standalone net debt + [ (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count)- Berkshire-3G contribution- ( (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count* % stock consideration)]
+      // const debtEBITDAA = this.state.kraftConstantData[0]['Net Debt'] + d.raw['Net Debt'] + [ ( d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate'] * ( 1 + premium) * shareCount ) - buffettContribution - ( d.raw['Current stock price'] * d.raw['share outstanding'] * d.raw['USD/ Euro exchange rate']) * ( 1 + premium ) * shareCount / stockConsideration ) ];
+      const debtEBITDAA = 0;
+      // debtEBITDAB = Kraft 2017E EBITDA + Target 2017E EBITDA
+      const debtEBITDAB = this.state.kraftConstantData[0]['2017E EBITDA'] + d.raw['2017E EBITDA'];
+      const debtEBITDA = debtEBITDAA / debtEBITDAB;
+
+      // Kraft standalone shares + ((target stock price * exchange rate) * (1+ premium)* % stock)/Kraft stock price + Berkshire_3G contribution/Kraft stock price
+      const buffett3GOwnershipA = this.state.kraftConstantData[0]['shares outstanding'] + ((d.raw['Current stock price'] * d.raw['USD/ Euro exchange rate']) * (1 + premium) * stockConsideration) / (this.state.kraftConstantData[0]['Current stock price']) + (buffettContribution / this.state.kraftConstantData[0]['Current stock price']);
+      // buffett3GOwnershipB = Berkshire_3G contribution/Kraft stock price
+      const buffett3GOwnershipB = buffettContribution / this.state.kraftConstantData[0]['Current stock price'];
+      // buffett3GOwnershipC = existing Berkshire_3G shares
+      const buffett3GOwnershipC = this.state.constantsData.existingBerkshire3GShares;
+      // buffett3GOwnership = a + b + c
+      const buffett3GOwnership = buffett3GOwnershipA + buffett3GOwnershipB + buffett3GOwnershipC;
+
+
+      d.epsAccretion = epsAccretion;
+      d.debtEBITDA = debtEBITDA;
+      d.buffett3GOwnership = buffett3GOwnership;
     });
 
-    this.setState({
-      data,
-    });
+    // const data = this.state.data;
+    // data.forEach((d) => {
+    //   d.epsAccretion = Math.round(Math.random() * 100);
+    //   d.debtEBITDA = Math.round(Math.random() * 100);
+    //   d.buffett3GOwnership = Math.round(Math.random() * 100);
+    // });
+    //
+    // this.setState({
+    //   data,
+    // });
   }
 
   render() {
@@ -152,36 +156,39 @@ class App extends Component {
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
                 <p>Choose a per cent premium, per cent stock and per cent Buffett/3G equity contribution prediction to see how it affects Krafts decision.</p>
                 <Range
-                  min={25}
-                  max={50}
+                  min={20}
+                  max={40}
                   step={5}
                   increments={7}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                   label={'% premium'}
                   labelName={'premium'}
+                  unit={'%'}
                   onSubmit={this.updateHeatmap}
                 />
                 <Range
-                  min={25}
-                  max={50}
-                  step={5}
-                  increments={7}
-                  overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
-                  thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                  label={'% Buffett/3G equity contribution'}
-                  labelName={'buffett'}
-                  onSubmit={this.updateHeatmap}
-                />
-                <Range
-                  min={25}
-                  max={50}
+                  min={0}
+                  max={25}
                   step={5}
                   increments={7}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                   label={'% in stock'}
                   labelName={'stock'}
+                  unit={'%'}
+                  onSubmit={this.updateHeatmap}
+                />
+                <Range
+                  min={5000}
+                  max={15000}
+                  step={1000}
+                  increments={7}
+                  overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
+                  thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+                  label={'Buffett/3G equity contribution ($)'}
+                  labelName={'buffett'}
+                  unit={'$'}
                   onSubmit={this.updateHeatmap}
                 />
               </div>
