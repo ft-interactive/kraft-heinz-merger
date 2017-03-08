@@ -60,7 +60,7 @@ class App extends Component {
     })
 
     const premium = this.state.premium / 100; // needs to be in decimal format
-    const buffettContribution = this.state.buffettContribution;
+    const buffettContribution = this.state.buffettContribution; // (input is in thousands of millions)
     const stockConsideration = this.state.stockConsideration / 100; // needs to be in decimal format
 
     // @TODO: Fill out this math
@@ -75,15 +75,14 @@ class App extends Component {
       const debtEBITDAB = this.state.kraftConstantData[0]['2017E EBITDA'] + d.raw['2017E EBITDA'];
       const debtEBITDA = debtEBITDAA / debtEBITDAB;
 
-      // Kraft standalone shares + ((target stock price * exchange rate) * (1+ premium)* % stock)/Kraft stock price + Berkshire_3G contribution/Kraft stock price
-      const buffett3GOwnershipA = this.state.kraftConstantData[0]['shares outstanding'] + ((d.raw['Current stock price'] * d.raw['USD/ Euro exchange rate']) * (1 + premium) * stockConsideration) / (this.state.kraftConstantData[0]['Current stock price']) + (buffettContribution / this.state.kraftConstantData[0]['Current stock price']);
+      // Kraft standalone shares + ((target stock price * exchange rate) * (1+ premium)* % stock)*target shares/Kraft stock price + Berkshire_3G contribution/Kraft stock price
+      const buffett3GOwnershipA = this.state.kraftConstantData[0]['shares outstanding'] + ((d.raw['Current stock price'] * d.raw['USD/ Euro exchange rate']) * (1 + premium) * stockConsideration) * d.raw['shares outstanding'] / (this.state.kraftConstantData[0]['Current stock price']) + (buffettContribution / this.state.kraftConstantData[0]['Current stock price']);
       // buffett3GOwnershipB = Berkshire_3G contribution/Kraft stock price
       const buffett3GOwnershipB = buffettContribution / this.state.kraftConstantData[0]['Current stock price'];
       // buffett3GOwnershipC = existing Berkshire_3G shares
-      const buffett3GOwnershipC = this.state.constantsData.existingBerkshire3GShares;
-      // buffett3GOwnership = a + b + c
-      const buffett3GOwnership = buffett3GOwnershipA + buffett3GOwnershipB + buffett3GOwnershipC;
-
+      const buffett3GOwnershipC = 616.3;
+      // buffett3GOwnership = (b + c)/a
+      const buffett3GOwnership = (buffett3GOwnershipB + buffett3GOwnershipC) / buffett3GOwnershipA;
 
       d.epsAccretion = epsAccretion;
       d.debtEBITDA = debtEBITDA;
