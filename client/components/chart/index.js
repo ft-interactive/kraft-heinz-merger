@@ -37,6 +37,10 @@ class ColumnChart extends Component {
     window.addEventListener('resize', throttle(this.handleResize, 750));
   }
 
+  componentWillReceiveProps() {
+    this.drawChart();
+  }
+
   drawChart() {
     const data = this.props.data;
 
