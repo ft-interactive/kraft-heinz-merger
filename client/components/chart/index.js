@@ -28,12 +28,12 @@ class ColumnChart extends Component {
 
   componentDidMount() {
     console.log(this.props.data);
-    const data = this.props.data.map(data => {
-      const value = data['Current stock price'] * data['shares outstanding'] + data['Net Debt'] + data['Minority Interest'];
+    const data = this.props.data.map((d) => {
+      const value = (d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest'];
       return {
-        category: data.key,
+        category: d.key,
         value,
-      }
+      };
     });
 
     console.log(data);
