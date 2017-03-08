@@ -31,7 +31,7 @@ class Range extends Component {
     const num = isNaN(inputValue) ? 0 : inputValue; // Ensure input value is a number
     const incrementWidth = this.state.incrementWidth;
     const diffFactor = this.state.diffFactor;
-    const center = this.state.center;
+    // const center = this.state.center;
     const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor);
 
     this.setState({
@@ -70,7 +70,7 @@ class Range extends Component {
         />
 
         <form
-          onSubmit={event => {
+          onSubmit={() => {
             this.setState({
               rangeDisabled: true,
               submitDisabled: true,
@@ -108,12 +108,12 @@ class Range extends Component {
                 value={this.state.value}
                 onChange={event => this.handleChange(event.target.value)}
                 disabled={this.state.rangeDisabled}
-                ref={node => { this.rangeInput = node; }}
+                ref={(node) => { this.rangeInput = node; }}
               />
 
               <output
                 style={{ left: `${this.state.rangeOverlayPosition}px` }}
-                ref={node => { this.output = node; }}
+                ref={(node) => { this.output = node; }}
               >
                 {this.state.value > 0 ? `${this.state.value}%` : this.state.value}
               </output>
@@ -125,7 +125,7 @@ class Range extends Component {
           </div>
 
           <div className="sub-labels-container">
-            {/*<div className="sub-labels sub-labels-l">
+            {/* <div className="sub-labels sub-labels-l">
               <i className="icon-arrow-left" />
               <span>Strongly disagree</span>
             </div>*/}
@@ -134,13 +134,13 @@ class Range extends Component {
                 <span>{this.props.label}</span>
               </label>
             </div>
-            {/*<div className="sub-labels sub-labels-r">
+            {/* <div className="sub-labels sub-labels-r">
               <span>Strongly agree</span>
               <i className="icon-arrow-right" />
             </div>*/}
           </div>
 
-          {/*<input
+          {/* <input
             type="submit"
             value="SUBMIT ANSWER"
             disabled={this.state.submitDisabled}
