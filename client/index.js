@@ -6,6 +6,10 @@ import Card from './components/card';
 import Range from './components/range';
 import Heatmap from './components/heatmap';
 
+function roundToTenth(num) {
+  return Math.round(num * 10) / 10;
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -80,9 +84,11 @@ class App extends Component {
       // buffett3GOwnershipB = Berkshire_3G contribution/Kraft stock price
       const buffett3GOwnershipB = buffettContribution / this.state.kraftConstantData[0]['Current stock price'];
       // buffett3GOwnershipC = existing Berkshire_3G shares
-      const buffett3GOwnershipC = 616.3;
+      const buffett3GOwnershipC = this.state.constantsData.existingBerkshire3GShares;
       // buffett3GOwnership = (b + c)/a
-      const buffett3GOwnership = (buffett3GOwnershipB + buffett3GOwnershipC) / buffett3GOwnershipA;
+      const buffett3GOwnership = roundToTenth((buffett3GOwnershipB + buffett3GOwnershipC) * 100 / buffett3GOwnershipA);
+
+      console.log(premium, buffettContribution, stockConsideration);
 
       d.epsAccretion = epsAccretion;
       d.debtEBITDA = debtEBITDA;
