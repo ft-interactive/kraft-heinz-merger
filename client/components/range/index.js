@@ -39,6 +39,8 @@ class Range extends Component {
       // submitDisabled: false,
       rangeOverlayPosition,
     });
+
+    this.props.onSubmit(event, this.state.value);
   }
 
   handleResize() {
@@ -73,7 +75,7 @@ class Range extends Component {
               rangeDisabled: true,
               submitDisabled: true,
             });
-            this.props.onSubmit(event, this.state.value);
+            // this.props.onSubmit(event, this.state.value);
             // TODO: comment out the lines below if you don't want the things to fade out
             // this.submitButton.style.opacity = 0;
             // this.rangeInput.classList.add('hidden');

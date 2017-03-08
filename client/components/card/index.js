@@ -19,7 +19,7 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  data: React.PropTypes.array,
+  data: React.PropTypes.any,
   headline: React.PropTypes.string,
   text: React.PropTypes.string,
 };
