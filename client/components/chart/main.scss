@@ -1,0 +1,42 @@
+$axis-color: #c3bcb0;
+$tick-label-color: #6b6e68;
+$distribution-color: #A5526A;
+
+svg.column-chart {
+  align-self: flex-start;
+  margin-top: 7px;
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: $axis-color;
+    stroke-width: 2;
+    shape-rendering: crispEdges;
+  }
+  .y.axis {
+    path {
+       stroke: none;
+     }
+    .tick line {
+      stroke-width: 1;
+      stroke-dasharray: 1, 2;
+    }
+  }
+  text {
+    font-size: 18px;
+    font-weight: 400;
+    fill: $tick-label-color;
+  }
+  .bar {
+    fill: $distribution-color;
+    shape-rendering: geometricPrecision;
+  }
+}
+
+div.legend {
+  display: flex;
+  align-items: center;
+
+  p.o-typography-lead--small {
+    margin: 0.3em 0 0.3em 7px;
+  }
+}
