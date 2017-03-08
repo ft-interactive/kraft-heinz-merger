@@ -30,7 +30,7 @@ class App extends Component {
         buffett3GOwnership,
         raw: d,
       };
-    }).sort((a, b) => b.enterpriseValue - a.enterpriseValue);
+    }).filter(d => d.category !== 'KHC').sort((a, b) => b.enterpriseValue - a.enterpriseValue);
 
     this.updateHeatmap = this.updateHeatmap.bind(this);
   }
@@ -95,7 +95,7 @@ class App extends Component {
             <h2 className="o-typography-heading3">Make your own predictions</h2>
             <div className="o-grid-row">
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
-                <p>Choose a per cent premium and cost cutting value prediction to see how it affects Krafts decision.</p>
+                <p>Choose a per cent premium, per cent stock and per cent Buffett/3G equity contribution prediction to see how it affects Krafts decision.</p>
                 <Range
                   min={25}
                   max={50}
