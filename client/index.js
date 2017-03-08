@@ -18,12 +18,19 @@ class App extends Component {
 
     this.state.data = this.state.constantData.map((d) => {
       const enterpriseValue = (d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest'];
+      const epsAccretion = null;
+      const debtEBITDA = null;
+      const buffett3GOwnership = null;
+
       return {
         category: d.key,
         enterpriseValue,
+        epsAccretion,
+        debtEBITDA,
+        buffett3GOwnership,
         raw: d,
       };
-    });
+    }).sort((a, b) => b.enterpriseValue - a.enterpriseValue);
 
     this.updateHeatmap = this.updateHeatmap.bind(this);
   }
@@ -127,6 +134,30 @@ class App extends Component {
                 <a className="o-expander__toggle o--if-js">Toggle</a>
               </div>
             </div>
+          </div>
+        </div>
+        <div id="output-wrapper">
+          <div className="output-container">
+            <Card
+              data={enterpriseValueData}
+              text={"This is some dummy text"}
+              headline={'1. Debt v EBITDA — Best value: Mondelez'}
+            />
+          </div>
+
+          <div className="output-container">
+            <Card
+              data={enterpriseValueData}
+              text={"This is some more dummy text"}
+              headline={'2. Enterprise value — Best value: Colgate'}
+            />
+          </div>
+          <div className="output-container">
+          <Card
+            data={enterpriseValueData}
+            text={"This is even more dummy text"}
+            headline={'3. 2018 EPS Accretion to Kraft — Best value: Clorox'}
+          />
           </div>
         </div>
       </div>
