@@ -188,10 +188,12 @@ class App extends Component {
           headline={'Kraft is likely to look for a company with an enterprise value between $40bn and $100bn'}
         />
         <div className="graphic" id="userinput-wrapper">
-          <div id="userinput-container">
+          <div id="userinput-container" className="o-grid-container">
             <h2 className="o-typography-heading3">Make your own predictions</h2>
             <div className="o-grid-row">
-              <p>Choose a per cent premium, per cent stock and per cent Buffett/3G equity contribution prediction to see how it affects Krafts decision.</p>
+              <div data-o-grid-colspan="12 L9">
+                <p>Choose a per cent premium, per cent stock and per cent Buffett/3G equity contribution prediction to see how it affects Krafts decision.</p>
+              </div>
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
                 <Range
                   min={20}
