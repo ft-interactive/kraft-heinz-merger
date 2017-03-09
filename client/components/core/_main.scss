@@ -108,7 +108,8 @@ $share-button-size: 38px;
 
   label {
     display: block;
-    margin-top: 1em;
+    margin-top: 0;
+    margin-bottom: 0.5em;
   }
 
   input[type="range"] {
