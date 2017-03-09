@@ -53,7 +53,7 @@ class ColumnChart extends Component {
     };
     const width = this.state.width - margin.left - margin.right;
     const height = ((this.state.height - margin.top) - margin.bottom) + 14;
-    const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) + 5, 0);
+    const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
     const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
 
     const xScale = d3.scaleBand()
@@ -108,15 +108,26 @@ class ColumnChart extends Component {
 
     const rect = bar.append('rect')
         .attr('x', 1)
-        .attr('y', height)
+        .attr('y', yScale(0))
         .attr('width', xScale.bandwidth() / 2)
-        .attr('height', 0);
+        .attr('height', 0)
+        .attr('fill', d => (d.value < 0 ? '#F19F9E' : '#A5526A'));
 
     rect.transition()
       .delay((d, i) => i * 7.5)
       .duration(500)
-      .attr('y', d => yScale(d.value || 0))
-      .attr('height', d => height - yScale(d.value || 0));
+      .attr('y', (d) => {
+        if (d.value < 0) {
+          return yScale(0);
+        }
+        return yScale(d.value || 0)
+      })
+      .attr('height', (d) => {
+        if (d.value < 0) {
+          return yScale(d.value || 0) - yScale(0);
+        }
+        return yScale(0) - yScale(d.value || 0)
+      });
 
     this.animateFauxDOM(800);
   }
