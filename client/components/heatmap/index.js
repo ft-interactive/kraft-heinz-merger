@@ -29,18 +29,44 @@ class Heatmap extends Component {
   }
 
   render() {
-    const heatmapData = this.props.data.map(d =>
-      <tr>
+    const epsAccretionMinMax = d3.extent(this.props.data.map(d => d.epsAccretion));
+    const epsAccretionColorScale = d3.scaleLinear()
+      .domain(epsAccretionMinMax)
+      .range(['#FFF1e0', '#A5526A']);
+
+    const debtEBITDAMinMax = d3.extent(this.props.data.map(d => d.debtEBITDA));
+    const debtEBITDAColorScale = d3.scaleLinear()
+      .domain(debtEBITDAMinMax)
+      .range(['#FFF1e0', '#A5526A']);
+
+    const buffett3GOwnershipMinMax = d3.extent(this.props.data.map(d => d.buffett3GOwnership));
+    const buffett3GOwnershipColorScale = d3.scaleLinear()
+      .domain(buffett3GOwnershipMinMax)
+      .range(['#FFF1e0', '#A5526A']);
+
+    const heatmapData = this.props.data.map((d) => {
+      const epsAccretionStyle = {
+        background: epsAccretionColorScale(d.epsAccretion),
+      };
+
+      const debtEBITDAStyle = {
+        background: debtEBITDAColorScale(d.debtEBITDA),
+      };
+
+      const buffett3GOwnershipStyle = {
+        background: buffett3GOwnershipColorScale(d.buffett3GOwnership),
+      };
+
+      return (<tr>
         <td>{d.raw.fullName}</td>
-        <td>{d.epsAccretion}</td>
-        <td>{d.debtEBITDA}</td>
-        <td>{d.buffett3GOwnership}</td>
-      </tr>,
-    );
+        <td style={epsAccretionStyle}>{d.epsAccretion}</td>
+        <td style={debtEBITDAStyle}>{d.debtEBITDA}</td>
+        <td style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
+      </tr>);
+    });
 
     return (
       <div>
-        <img src="images/demo-heatmap.png" alt="chart" />
         <table>
           <thead>
             <tr>
