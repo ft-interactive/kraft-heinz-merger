@@ -10,6 +10,10 @@ function roundToTenth(num) {
   return Math.round(num * 10) / 10;
 }
 
+function roundToHundredth(num) {
+  return Math.round(num * 100) / 100;
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -70,14 +74,36 @@ class App extends Component {
     // @TODO: Fill out this math
     const data = this.state.data;
     data.forEach((d) => {
-      const epsAccretion = Math.round(Math.random() * 100);
-
-      // debtEBITDAA = Kraft standalone debt + target standalone net debt + [ (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count)- Berkshire-3G contribution- ( (standalone target stock price * target share count * exchange rate)* (1+ premium) * share count* % stock consideration)]
-      // const debtEBITDAA = this.state.kraftConstantData[0]['Net Debt'] + d.raw['Net Debt'] + [ ( d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate'] * ( 1 + premium) * shareCount ) - buffettContribution - ( d.raw['Current stock price'] * d.raw['share outstanding'] * d.raw['USD/ Euro exchange rate']) * ( 1 + premium ) * shareCount / stockConsideration ) ];
-      const debtEBITDAA = 0;
+      // debtEBITDAA = Kraft standalone debt + target standalone net debt + [ (standalone target stock price * target share count * exchange rate)* (1+ premium) - Berkshire-3G contribution- ( (standalone target stock price * target share count * exchange rate)* (1+ premium) * % stock consideration)]
+      const debtEBITDAA = this.state.kraftConstantData[0]['Net Debt'] +
+            d.raw['Net Debt'] +
+            d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate'] * ( 1 + premium) -
+            buffettContribution -
+            (d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate']) * ( 1 + premium ) * stockConsideration;
       // debtEBITDAB = Kraft 2017E EBITDA + Target 2017E EBITDA
       const debtEBITDAB = this.state.kraftConstantData[0]['2017E EBITDA'] + d.raw['2017E EBITDA'];
-      const debtEBITDA = debtEBITDAA / debtEBITDAB;
+      // debtEBITDA = a / b
+      const debtEBITDA = roundToTenth(debtEBITDAA / debtEBITDAB);
+
+      const totalDebt = d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate'] * ( 1 + premium) -
+      buffettContribution -
+      (d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate']) * ( 1 + premium ) * stockConsideration;
+
+      // epsAccretionA = (Kraft 2018E EPS * Kraft shares)+ (Target 2018E EPS * Target Shares)
+      const epsAccretionA = (this.state.kraftConstantData[0]['2018E EPS'] * this.state.kraftConstantData[0]['shares outstanding']) + (d.raw['2018E EPS'] * d.raw['shares outstanding']);
+      // epsAccretionB = [ (cost of debt * (debtEBITDAA - Kraft standalone debt - target standalone debt)) + synergy rate * target 2017E SG&A * exchange rate] * (1 - tax rate)
+      const epsAccretionB = (-(this.state.constantsData.costOfDebt * totalDebt) + (this.state.constantsData.synergyRate * d.raw['2017E SG&A'] * d.raw['USD/ Euro exchange rate'])) * (1 - this.state.constantsData.taxRate);
+      // epsAccretionC = Kraft standalone shares + ((target stock price * exchange rate) * (1+ premium)*target standalone shares* % stock)/Kraft stock price + (Berkshire_3G contribution/Kraft stock price)
+      const epsAccretionC = this.state.kraftConstantData[0]['shares outstanding'] +
+            ((d.raw['Current stock price'] * d.raw['USD/ Euro exchange rate']) * (1 + premium) * d.raw['shares outstanding'] * stockConsideration) / this.state.kraftConstantData[0]['Current stock price'] +
+            (buffettContribution / this.state.kraftConstantData[0]['Current stock price']);
+      // epsAccretionD = (a+ b) / c
+      const epsAccretionD = (epsAccretionA + epsAccretionB) / epsAccretionC;
+      // epsAccretion = d / stanalone 2018E Kraft EPS
+      const epsAccretion = roundToHundredth((epsAccretionD - this.state.kraftConstantData[0]['2018E EPS']) * 100 / this.state.kraftConstantData[0]['2018E EPS']);
+
+      console.log(epsAccretionA, epsAccretionB, epsAccretionC, epsAccretionD, epsAccretion);
+
 
       // Kraft standalone shares + ((target stock price * exchange rate) * (1+ premium)* % stock)*target shares/Kraft stock price + Berkshire_3G contribution/Kraft stock price
       const buffett3GOwnershipA = this.state.kraftConstantData[0]['shares outstanding'] + ((d.raw['Current stock price'] * d.raw['USD/ Euro exchange rate']) * (1 + premium) * stockConsideration) * d.raw['shares outstanding'] / (this.state.kraftConstantData[0]['Current stock price']) + (buffettContribution / this.state.kraftConstantData[0]['Current stock price']);
@@ -88,7 +114,7 @@ class App extends Component {
       // buffett3GOwnership = (b + c)/a
       const buffett3GOwnership = roundToTenth((buffett3GOwnershipB + buffett3GOwnershipC) * 100 / buffett3GOwnershipA);
 
-      console.log(premium, buffettContribution, stockConsideration);
+      console.log(premium, stockConsideration, buffettContribution);
 
       d.epsAccretion = epsAccretion;
       d.debtEBITDA = debtEBITDA;
