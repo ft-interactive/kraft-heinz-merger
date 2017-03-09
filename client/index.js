@@ -30,16 +30,16 @@ class App extends Component {
         synergyRate: 0.25,
       },
       data: [],
-      premium: 25,
-      buffettContribution: 25,
-      stockConsideration: 25,
+      premium: 20,
+      stockConsideration: 1,
+      buffettContribution: 5000,
     };
 
     this.state.data = this.state.constantCompanyData.map((d) => {
       const enterpriseValue = (d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest'];
-      const epsAccretion = Math.round(Math.random() * 100);
-      const debtEBITDA = Math.round(Math.random() * 100);
-      const buffett3GOwnership = Math.round(Math.random() * 100);
+      const epsAccretion = null;
+      const debtEBITDA = null;
+      const buffett3GOwnership = null;
 
       return {
         category: d.key,
@@ -51,6 +51,9 @@ class App extends Component {
       };
     }).sort((a, b) => b.enterpriseValue - a.enterpriseValue);
 
+    this.updateHeatmap();
+
+    this.updateData = this.updateData.bind(this);
     this.updateHeatmap = this.updateHeatmap.bind(this);
   }
 
@@ -58,15 +61,19 @@ class App extends Component {
     expander.init(null, {});
   }
 
-  updateHeatmap(label, value) {
+  updateData(label, value) {
     console.log('update heatmap', label, value);
 
     this.setState({
       premium: (label === 'premium' ? value : this.state.premium),
       buffettContribution: (label === 'buffett' ? value : this.state.buffettContribution),
       stockConsideration: (label === 'stock' ? value : this.state.stockConsideration),
-    })
+    });
 
+    this.updateHeatmap();
+  }
+
+  updateHeatmap() {
     const premium = this.state.premium / 100; // needs to be in decimal format
     const buffettContribution = this.state.buffettContribution; // (input is in thousands of millions)
     const stockConsideration = this.state.stockConsideration / 100; // needs to be in decimal format
@@ -196,7 +203,7 @@ class App extends Component {
                   label={'% premium'}
                   labelName={'premium'}
                   unit={'%'}
-                  onSubmit={this.updateHeatmap}
+                  onSubmit={this.updateData}
                 />
                 <Range
                   min={0}
@@ -208,7 +215,7 @@ class App extends Component {
                   label={'% in stock'}
                   labelName={'stock'}
                   unit={'%'}
-                  onSubmit={this.updateHeatmap}
+                  onSubmit={this.updateData}
                 />
                 <Range
                   min={5000}
@@ -220,7 +227,7 @@ class App extends Component {
                   label={'Buffett/3G equity contribution ($)'}
                   labelName={'buffett'}
                   unit={'$'}
-                  onSubmit={this.updateHeatmap}
+                  onSubmit={this.updateData}
                 />
               </div>
               <div className="userinput-container__component" id="userinput-output" data-o-grid-colspan="12 M6">
