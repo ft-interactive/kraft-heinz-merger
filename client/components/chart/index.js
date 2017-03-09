@@ -56,6 +56,11 @@ class ColumnChart extends Component {
     const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
     const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
 
+    const svg = d3.select(chart)
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .attr('class', 'column-chart');
+
     const xScale = d3.scaleBand()
         .domain(data.map(d => d.category))
         .range([0, width])
@@ -68,19 +73,13 @@ class ColumnChart extends Component {
 
     const xAxis = d3.axisBottom()
         .scale(xScale)
-        .ticks(10)
-        .tickSizeOuter(0);
+        .ticks(10);
 
     const yAxis = d3.axisRight()
         .scale(yScale)
         .ticks(5)
         .tickSize(width, 0)
         .tickPadding(10);
-
-    const svg = d3.select(chart)
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
-        .attr('class', 'column-chart');
 
     svg.append('g')
         .attr('class', 'y axis')
@@ -99,6 +98,22 @@ class ColumnChart extends Component {
         .attr('class', 'x axis')
         .attr('transform', `translate(0, ${height})`)
         .call(xAxis);
+
+    // svg.selectAll('.x .tick line')
+    //   .attr('y2', (d, i) => {
+    //     if (i % 2 === 1) {
+    //       return 27;
+    //     }
+    //     return 6;
+    //   });
+
+    svg.selectAll('.x .tick text')
+      .attr('y', (d, i) => {
+        if (i % 2 === 1) {
+          return 30;
+        }
+        return 9;
+      });
 
     const bar = svg.selectAll('.bar')
         .data(data)
