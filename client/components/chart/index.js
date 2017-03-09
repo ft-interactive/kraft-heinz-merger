@@ -53,6 +53,7 @@ class ColumnChart extends Component {
     };
     const width = this.state.width - margin.left - margin.right;
     const height = ((this.state.height - margin.top) - margin.bottom) + 14;
+    const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) + 5, 0);
     const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
 
     const xScale = d3.scaleBand()
@@ -62,7 +63,7 @@ class ColumnChart extends Component {
         .paddingOuter([0.3]);
 
     const yScale = d3.scaleLinear()
-        .domain([0, yDomainMax])
+        .domain([yDomainMin, yDomainMax])
         .range([height, 0]);
 
     const xAxis = d3.axisBottom()
