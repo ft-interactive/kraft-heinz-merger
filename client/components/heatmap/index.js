@@ -66,7 +66,7 @@ class Heatmap extends Component {
     });
 
     return (
-      <div>
+      <div id="heatmap">
         <table>
           <thead>
             <tr>
