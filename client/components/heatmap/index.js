@@ -58,7 +58,7 @@ class Heatmap extends Component {
       };
 
       return (<tr>
-        <td>{d.raw.fullName}</td>
+        <td>{d.raw.displayName}</td>
         <td style={epsAccretionStyle}>{d.epsAccretion}</td>
         <td style={debtEBITDAStyle}>{d.debtEBITDA}</td>
         <td style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
