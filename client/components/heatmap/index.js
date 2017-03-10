@@ -74,8 +74,8 @@ class Heatmap extends Component {
             <tr>
               <th />
               <th>Earnings impact (%)</th>
-              <th>Debt to EBITDA</th>
-              <th>Buffett/3G Ownership (%)</th>
+              <th>Net debt to EBITDA</th>
+              <th>Buffett/3G ownership (%)</th>
             </tr>
           </thead>
           <tbody>
