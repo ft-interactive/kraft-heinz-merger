@@ -10,8 +10,6 @@ class ColumnChart extends Component {
     this.state = {
       // Placeholder content displayed before chart render
       chart: 'Loading chart…',
-      width: 600,
-      height: 300,
     };
 
     this.handleResize = this.handleResize.bind(this);
@@ -76,8 +74,10 @@ class ColumnChart extends Component {
       bottom: 30,
       left: 0,
     };
-    const width = this.state.width - margin.left - margin.right;
-    const height = ((this.state.height - margin.top) - margin.bottom) + 14;
+
+    const width = this.node.offsetWidth - margin.left - margin.right;
+    const calculatedHeight = Math.max(150, (this.node.offsetWidth / 3.2) + 14);
+    const height = ((calculatedHeight - margin.top) - margin.bottom) + 14;
     const breakpoint = 400;
 
     if (width < breakpoint) {
@@ -173,15 +173,6 @@ class ColumnChart extends Component {
   }
 
   handleResize() {
-    // Repeat height calculation with fallback value as above
-    const calculatedHeight = (this.node.offsetWidth / 3.2) + 14;
-    const height = calculatedHeight < 125 ? 125 : calculatedHeight;
-
-    this.setState({
-      width: this.node.offsetWidth,
-      height,
-    });
-
     this.drawChart();
   }
 
