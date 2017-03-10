@@ -59,11 +59,13 @@ class Heatmap extends Component {
         background: buffett3GOwnershipColorScale(d.buffett3GOwnership),
       };
 
-      return (<tr>
-        <td>{d.raw.displayName}</td>
-        <td style={epsAccretionStyle}>{d.epsAccretion}</td>
-        <td style={debtEBITDAStyle}>{d.debtEBITDA}x</td>
-        <td style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
+      const rowKey = `${d.raw.displayName}-row`;
+
+      return (<tr key={rowKey}>
+        <td key={d.raw.displayName}>{d.raw.displayName}</td>
+        <td key={d.epsAccretion} style={epsAccretionStyle}>{d.epsAccretion}</td>
+        <td key={d.debtEBITDA} style={debtEBITDAStyle}>{d.debtEBITDA}x</td>
+        <td key={d.buffett3GOwnership} style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
       </tr>);
     });
 
