@@ -31,7 +31,7 @@ class App extends Component {
       },
       data: [],
       premium: 20,
-      stockConsideration: 1,
+      stockConsideration: 0,
       buffettContribution: 5000,
     };
 
@@ -84,8 +84,8 @@ class App extends Component {
             d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate'] * ( 1 + premium) -
             buffettContribution -
             (d.raw['Current stock price'] * d.raw['shares outstanding'] * d.raw['USD/ Euro exchange rate']) * ( 1 + premium ) * stockConsideration;
-      // debtEBITDAB = Kraft 2017E EBITDA + Target 2017E EBITDA
-      const debtEBITDAB = this.state.kraftConstantData[0]['2017E EBITDA'] + d.raw['2017E EBITDA'];
+      // debtEBITDAB = Kraft 2017E EBITDA + (Target 2017E EBITDA * exchange rate)
+      const debtEBITDAB = this.state.kraftConstantData[0]['2017E EBITDA'] + (d.raw['2017E EBITDA'] * d.raw['USD/ Euro exchange rate']);
       // debtEBITDA = a / b
       const debtEBITDA = roundToTenth(debtEBITDAA / debtEBITDAB);
 
@@ -104,7 +104,7 @@ class App extends Component {
       // epsAccretionD = (a+ b) / c
       const epsAccretionD = (epsAccretionA + epsAccretionB) / epsAccretionC;
       // epsAccretion = d / stanalone 2018E Kraft EPS
-      const epsAccretion = roundToHundredth((epsAccretionD - this.state.kraftConstantData[0]['2018E EPS']) * 100 / this.state.kraftConstantData[0]['2018E EPS']);
+      const epsAccretion = roundToTenth((epsAccretionD - this.state.kraftConstantData[0]['2018E EPS']) * 100 / this.state.kraftConstantData[0]['2018E EPS']);
 
       // Kraft standalone shares + ((target stock price * exchange rate) * (1+ premium)* % stock)*target shares/Kraft stock price + Berkshire_3G contribution/Kraft stock price
       const buffett3GOwnershipA = this.state.kraftConstantData[0]['shares outstanding'] + ((d.raw['Current stock price'] * d.raw['USD/ Euro exchange rate']) * (1 + premium) * stockConsideration) * d.raw['shares outstanding'] / (this.state.kraftConstantData[0]['Current stock price']) + (buffettContribution / this.state.kraftConstantData[0]['Current stock price']);
@@ -170,14 +170,22 @@ class App extends Component {
       <div>
         <Card
           data={enterpriseValueData}
-          headline={'Kraft is likely to look for a company with an enterprise value between $40bn and $100bn'}
+          headline={'Kraft is likely to look for a company with an aggregate value between $40bn and $100bn'}
         />
         <div className="graphic" id="userinput-wrapper">
           <div id="userinput-container" className="o-grid-container">
             <h2 className="o-typography-heading3">Make your own predictions</h2>
             <div className="o-grid-row">
               <div data-o-grid-colspan="12 L9">
-                <p>Choose a per cent premium, per cent stock and per cent Buffett/3G equity contribution prediction to see how it affects Krafts decision.</p>
+                <p>Kraft Heinz must pay enough to convince a target company to sell themselves but also must guard against issuing too much debt to pay for the deal. We have included Unilever as a choice to use as a comparison.</p>
+
+                <p>Therefore choose:</p>
+
+                <ol>
+                  <li>a premium that Kraft Heinz will have to pay to the target shareholders</li>
+                  <li>the proportion of Kraft Heinz stock they will issue to the target company</li>
+                  <li>How much equity they will sell collectively to Warren Buffett and 3G Capital</li>
+                </ol>
               </div>
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
                 <Range
@@ -211,7 +219,7 @@ class App extends Component {
                   increments={7}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                  label={'Buffett/3G equity contribution ($)'}
+                  label={'Buffett/3G equity contribution ($m)'}
                   labelName={'buffett'}
                   unit={'$'}
                   onSubmit={this.updateData}
@@ -257,23 +265,23 @@ class App extends Component {
           <div className="output-container">
             <Card
               data={epsAccretionData}
-              text={'This is even more dummy text'}
-              headline={'1. 2018 EPS Accretion to Kraft — Best value: Clorox'}
+              text={'Earnings per share accretion is the metric company\'s are trying maximise in M&A deals. Kraft Heinz will acquire the target company\'s net income but, in exchange, owe interest expense on the new debt. And new Kraft Heinz shares will also be issued to the target\'s shareholders and to Buffett/3G for the equity they purchase. It is obvious why Kraft Heinz ambitiously pursued Unilever: because of its the sheer size of its earnings base, it could provide a huge boost to Kraft Heinz earnings. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23x earnings without any premium,likely making an acquisition dilutive to Kraft Heinz earnings.'}
+              headline={'1. 2018 estimated earnings impact to Kraft'}
             />
           </div>
 
           <div className="output-container">
             <Card
               data={debtEBITDAData}
-              text={'This is some dummy text'}
-              headline={'2. Debt v EBITDA — Best value: Mondelez'}
+              text={'Typically Net Debt/EBITDA over 6x is considered highly leveraged. Kraft Heinz\'s standalone Net/Debt to EBITDA ratio is 3.4x and it has the lowest investment grade credit rating. Acquiring Unilever would like have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
+              headline={'2. Kraft Heinz leverage'}
             />
           </div>
           <div className="output-container">
             <Card
               data={buffett3GOwnershipData}
-              text={'This is some more dummy text'}
-              headline={'3. Buffett/3G ownership — Best value: Colgate'}
+              text={'Buffett/3G currently own half of Kraft Heinz. For any constant Buffett/3G contribution in an acquisition, the smaller the target company, the greater proportion they will own of Kraft Heinz.'}
+              headline={'3. Buffett/3G ownership of Kraft Heinz (percentage point difference for current)'}
             />
           </div>
         </div>
