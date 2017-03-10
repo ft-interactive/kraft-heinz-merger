@@ -115,7 +115,7 @@ class App extends Component {
       // buffett3GOwnership = (b + c)/a
       const buffett3GOwnership = roundToTenth((buffett3GOwnershipB + buffett3GOwnershipC) * 100 / buffett3GOwnershipA);
 
-      console.log(premium, stockConsideration, buffettContribution, this.state);
+      console.log(premium, stockConsideration, buffettContribution);
 
       d.epsAccretion = epsAccretion;
       d.debtEBITDA = debtEBITDA;
