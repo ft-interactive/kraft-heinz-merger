@@ -265,7 +265,7 @@ class App extends Component {
           <div className="output-container">
             <Card
               data={epsAccretionData}
-              text={'Earnings per share accretion is the metric company\'s are trying maximise in M&A deals. Kraft Heinz will acquire the target company\'s net income but, in exchange, owe interest expense on the new debt. And new Kraft Heinz shares will also be issued to the target\'s shareholders and to Buffett/3G for the equity they purchase. It is obvious why Kraft Heinz ambitiously pursued Unilever: because of its the sheer size of its earnings base, it could provide a huge boost to Kraft Heinz earnings. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23x earnings without any premium,likely making an acquisition dilutive to Kraft Heinz earnings.'}
+              text={'Earnings per share accretion is the metric companyies are trying to maximise in M&A deals. Kraft Heinz will acquire the target company\'s net income but, in exchange, owe interest expense on the new debt. And new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G for the equity they purchase. It is obvious why Kraft Heinz ambitiously pursued Unilever: because of its the sheer size of its earnings base, it could provide a huge boost to Kraft Heinz earnings. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23x earnings without any premium, likely making an acquisition dilutive to Kraft Heinz earnings.'}
               headline={'1. 2018 estimated earnings impact to Kraft'}
             />
           </div>
@@ -273,14 +273,14 @@ class App extends Component {
           <div className="output-container">
             <Card
               data={debtEBITDAData}
-              text={'Typically Net Debt/EBITDA over 6x is considered highly leveraged. Kraft Heinz\'s standalone Net/Debt to EBITDA ratio is 3.4x and it has the lowest investment grade credit rating. Acquiring Unilever would like have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
+              text={'Typically net debt/EBITDA over 6x is considered highly leveraged. Kraft Heinz\'s standalone net debt to EBITDA ratio is 3.4x and it has the lowest investment grade credit rating. Acquiring Unilever would like have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
               headline={'2. Kraft Heinz leverage'}
             />
           </div>
           <div className="output-container">
             <Card
               data={buffett3GOwnershipData}
-              text={'Buffett/3G currently own half of Kraft Heinz. For any constant Buffett/3G contribution in an acquisition, the smaller the target company, the greater proportion they will own of Kraft Heinz.'}
+              text={'Buffett/3G currently own half of Kraft Heinz. For any given Buffett/3G contribution in an acquisition, the smaller the target company, the greater proportion they will own of Kraft Heinz.'}
               headline={'3. Buffett/3G ownership of Kraft Heinz (percentage point difference for current)'}
             />
           </div>
