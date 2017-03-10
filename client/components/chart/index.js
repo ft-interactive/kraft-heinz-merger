@@ -78,13 +78,14 @@ class ColumnChart extends Component {
     };
     const width = this.state.width - margin.left - margin.right;
     const height = ((this.state.height - margin.top) - margin.bottom) + 14;
-    const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
-    const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
     const breakpoint = 400;
 
     if (width < breakpoint) {
       data = data.slice(0, -2);
     }
+
+    const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
+    const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
 
     const svg = d3.select(chart)
         .attr('width', width + margin.left + margin.right)
