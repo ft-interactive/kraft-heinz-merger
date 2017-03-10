@@ -32,17 +32,19 @@ class Heatmap extends Component {
     const epsAccretionMinMax = d3.extent(this.props.data.map(d => d.epsAccretion));
     const epsAccretionColorScale = d3.scaleLinear()
       .domain(epsAccretionMinMax)
-      .range(['#FFF1e0', '#A5526A']);
+      .range(['#A5526A', '#FFF1e0']);
 
     const debtEBITDAMinMax = d3.extent(this.props.data.map(d => d.debtEBITDA));
     const debtEBITDAColorScale = d3.scaleLinear()
       .domain(debtEBITDAMinMax)
       .range(['#FFF1e0', '#A5526A']);
 
-    const buffett3GOwnershipMinMax = d3.extent(this.props.data.map(d => d.buffett3GOwnership));
-    const buffett3GOwnershipColorScale = d3.scaleLinear()
-      .domain(buffett3GOwnershipMinMax)
-      .range(['#FFF1e0', '#A5526A']);
+    const buffett3GOwnershipColorScale = (value) => {
+      if (value < 50) {
+        return 'rgb(239, 213, 203)';
+      }
+      return 'rgb(183, 113, 129)';
+    };
 
     const heatmapData = this.props.data.map((d) => {
       const epsAccretionStyle = {
@@ -60,7 +62,7 @@ class Heatmap extends Component {
       return (<tr>
         <td>{d.raw.displayName}</td>
         <td style={epsAccretionStyle}>{d.epsAccretion}</td>
-        <td style={debtEBITDAStyle}>{d.debtEBITDA}</td>
+        <td style={debtEBITDAStyle}>{d.debtEBITDA}x</td>
         <td style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
       </tr>);
     });
@@ -71,9 +73,9 @@ class Heatmap extends Component {
           <thead>
             <tr>
               <th />
-              <th>EPS Accretion</th>
+              <th>Earnings impact (%)</th>
               <th>Debt to EBITDA</th>
-              <th>Buffett/3G Ownership</th>
+              <th>Buffett/3G Ownership (%)</th>
             </tr>
           </thead>
           <tbody>
