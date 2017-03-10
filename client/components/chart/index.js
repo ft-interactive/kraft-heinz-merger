@@ -37,11 +37,11 @@ class ColumnChart extends Component {
     window.addEventListener('resize', throttle(this.handleResize, 750));
   }
 
-  componentWillReceiveProps() {
-    this.drawChart();
+  componentWillReceiveProps(nextProps) {
+    this.drawChart(nextProps.data);
   }
 
-  drawChart() {
+  drawChart(inputData=this.props.data) {
     function wrap(text, width) {
       text.each(function() {
         var text = d3.select(this),
@@ -67,7 +67,7 @@ class ColumnChart extends Component {
       });
     }
 
-    let data = this.props.data;
+    let data = inputData;
 
     const chart = this.connectFauxDOM('svg', 'chart');
     const margin = { // Mike Bostock's margin convention
@@ -83,7 +83,7 @@ class ColumnChart extends Component {
     const breakpoint = 400;
 
     if (width < breakpoint) {
-      data = this.props.data.slice(0, -2);
+      data = data.slice(0, -2);
     }
 
     const svg = d3.select(chart)
