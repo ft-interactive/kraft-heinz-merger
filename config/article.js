@@ -11,14 +11,14 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'Five companies Kraft could try to buy next',
+  headline: 'The next set of companies Kraft Heinz could be targeting',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Kraft sets its sights on smaller targets after failing to acquire Unilever',
+  summary: 'The acquisitive American consumer group now sets its sights on smaller targets after abandoning pursuit of Unilever',
 
   topic: {
-    name: 'Personal & Household Goods',
-    url: 'https://www.ft.com/stream/sectionsId/NDc=-U2VjdGlvbnM=',
+    name: 'Mergers & Acquisitions',
+    url: 'https://www.ft.com/stream/sectionsId/Mjk=-VG9waWNz',
   },
 
   relatedArticle: {
@@ -37,8 +37,8 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Author One', url: '/foo/bar' },
-    { name: 'Author Two' },
+    { name: 'Sujeet Indap', url: 'https://www.ft.com/stream/authorsId/Q0ItMDMzNDMwNw==-QXV0aG9ycw==' },
+    { name: 'Joanna S Kao', url: 'https://www.ft.com/stream/authorsId/NWRlMDQ0Y2MtODA3Mi00N2VlLWEyZGItNWRmYTZhNDNiNWNi-QXV0aG9ycw==' },
   ],
 
   // Appears in the HTML <title>
