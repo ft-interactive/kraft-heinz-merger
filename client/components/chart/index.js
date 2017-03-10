@@ -67,7 +67,7 @@ class ColumnChart extends Component {
       });
     }
 
-    const data = this.props.data;
+    let data = this.props.data;
 
     const chart = this.connectFauxDOM('svg', 'chart');
     const margin = { // Mike Bostock's margin convention
@@ -80,6 +80,11 @@ class ColumnChart extends Component {
     const height = ((this.state.height - margin.top) - margin.bottom) + 14;
     const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
     const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
+    const breakpoint = 400;
+
+    if (width < breakpoint) {
+      data = this.props.data.slice(0, -2);
+    }
 
     const svg = d3.select(chart)
         .attr('width', width + margin.left + margin.right)
