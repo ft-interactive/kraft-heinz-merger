@@ -69,8 +69,6 @@ class App extends Component {
       buffettContribution: (label === 'buffett' ? value : this.state.buffettContribution),
       stockConsideration: (label === 'stock' ? value : this.state.stockConsideration),
     });
-
-    this.updateHeatmap();
   }
 
   updateHeatmap() {
@@ -117,7 +115,7 @@ class App extends Component {
       // buffett3GOwnership = (b + c)/a
       const buffett3GOwnership = roundToTenth((buffett3GOwnershipB + buffett3GOwnershipC) * 100 / buffett3GOwnershipA);
 
-      console.log(premium, stockConsideration, buffettContribution);
+      console.log(premium, stockConsideration, buffettContribution, this.state);
 
       d.epsAccretion = epsAccretion;
       d.debtEBITDA = debtEBITDA;
@@ -126,6 +124,8 @@ class App extends Component {
   }
 
   render() {
+    this.updateHeatmap();
+
     const enterpriseValueData = this.state.data.map((d) => {
       const cat = d.category;
       const value = d.enterpriseValue;
