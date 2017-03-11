@@ -123,6 +123,14 @@ $share-button-size: 38px;
       width: 100%;
     }
   }
+
+  .o-expander {
+    margin-top: 2em;
+  }
+
+  .o-expander__toggle {
+    font-size: 18px;
+  }
 }
 
 #output-wrapper {
