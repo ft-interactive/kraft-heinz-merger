@@ -280,7 +280,7 @@ class App extends Component {
               data={buffett3GOwnershipData}
               text={'Buffett/3G currently own half of Kraft Heinz. For any given Buffett/3G contribution in an acquisition, the smaller the target company, the greater proportion they will own of Kraft Heinz.'}
               headline={'3. Buffett/3G ownership of Kraft Heinz'}
-              subhead={'percentage point difference for current ownership'}
+              subhead={'percentage point difference from current ownership'}
             />
           </div>
         </div>
