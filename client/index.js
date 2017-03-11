@@ -230,7 +230,6 @@ class App extends Component {
               <div data-o-component="o-expander" className="o-expander items" data-o-expander-shrink-to="0" data-o-expander-count-selector="div" data-o-expander-expanded-toggle-text="Show fewer options" data-o-expander-collapsed-toggle-text="Click for choose different values for individual companies" data-o-grid-colspan="12" id="more-options">
                 <div className="o-expander__content">
                   <div>
-                    <h5>For more options:</h5>
                     <b>Campbell</b> (% premium): <input type="number" />
                     (% cost cut): <input type="number" />
 
@@ -253,7 +252,7 @@ class App extends Component {
                     (% cost cut): <input type="number" />
                   </div>
                 </div>
-                <a className="o-expander__toggle o--if-js">Toggle</a>
+                <a className="o-expander__toggle o--if-js">Options</a>
               </div>
             </div>
           </div>
