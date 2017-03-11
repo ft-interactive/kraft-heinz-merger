@@ -12,6 +12,7 @@ class Card extends Component {
       <div className="inline-graphic" id="chart-enterprise-value">
         <h2 className="o-typography-subhead">{this.props.headline}</h2>
         <p>{this.props.text}</p>
+        <p className="o-typography-lead--small">{this.props.subhead}</p>
         <ColumnChart data={this.props.data} yHighlight={this.props.yHighlight} />
       </div>
     );
@@ -21,6 +22,7 @@ class Card extends Component {
 Card.propTypes = {
   data: React.PropTypes.any,
   headline: React.PropTypes.string,
+  subhead: React.PropTypes.string,
   text: React.PropTypes.string,
   yHighlight: React.PropTypes.number,
 };
