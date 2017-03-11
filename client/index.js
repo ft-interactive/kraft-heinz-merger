@@ -10,10 +10,6 @@ function roundToTenth(num) {
   return Math.round(num * 10) / 10;
 }
 
-function roundToHundredth(num) {
-  return Math.round(num * 100) / 100;
-}
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +28,7 @@ class App extends Component {
       data: [],
       premium: 20,
       stockConsideration: 0,
-      buffettContribution: 5000,
+      buffettContribution: 5,
     };
 
     this.state.data = this.state.constantCompanyData.map((d) => {
@@ -73,7 +69,7 @@ class App extends Component {
 
   updateHeatmap() {
     const premium = this.state.premium / 100; // needs to be in decimal format
-    const buffettContribution = this.state.buffettContribution; // (input is in thousands of millions)
+    const buffettContribution = this.state.buffettContribution * 1000; // (input is in billions)
     const stockConsideration = this.state.stockConsideration / 100; // needs to be in decimal format
 
     const data = this.state.data;
@@ -214,13 +210,13 @@ class App extends Component {
                   onSubmit={this.updateData}
                 />
                 <Range
-                  min={5000}
-                  max={15000}
-                  step={1000}
-                  increments={7}
+                  min={5}
+                  max={15}
+                  step={1}
+                  increments={10}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                  label={'Buffett/3G equity contribution ($m)'}
+                  label={'Buffett/3G equity contribution ($bn)'}
                   labelName={'buffett'}
                   unit={'$'}
                   onSubmit={this.updateData}
