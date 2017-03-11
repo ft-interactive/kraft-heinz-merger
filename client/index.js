@@ -128,7 +128,7 @@ class App extends Component {
 
     const enterpriseValueData = this.state.data.map((d) => {
       const cat = d.category;
-      const value = d.enterpriseValue;
+      const value = d.enterpriseValue / 1000;
 
       return {
         category: cat,
@@ -171,7 +171,7 @@ class App extends Component {
         <Card
           data={enterpriseValueData}
           headline={'Kraft is likely to look for a company with an aggregate value between $40bn and $100bn'}
-          subhead={'$m'}
+          subhead={'$bn'}
         />
         <div className="graphic" id="userinput-wrapper">
           <div id="userinput-container" className="o-grid-container">
