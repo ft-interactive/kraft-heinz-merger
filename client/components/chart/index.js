@@ -69,7 +69,7 @@ class ColumnChart extends Component {
 
     const chart = this.connectFauxDOM('svg', 'chart');
     const margin = { // Mike Bostock's margin convention
-      top: 20,
+      top: 10,
       right: 40,
       bottom: 30,
       left: 0,
@@ -114,6 +114,7 @@ class ColumnChart extends Component {
 
     svg.append('g')
         .attr('class', 'y axis')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`)
         .call(yAxis)
       .selectAll('text')
         .style('text-anchor', 'start');
@@ -127,7 +128,7 @@ class ColumnChart extends Component {
 
     svg.append('g')
         .attr('class', 'x axis')
-        .attr('transform', `translate(0, ${height})`)
+        .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
         .call(xAxis);
       // .selectAll('.tick text')
       //   .call(wrap, xScale.bandwidth());
@@ -140,15 +141,19 @@ class ColumnChart extends Component {
         return 9;
       });
 
+    const chartContainer = svg.append('g')
+      .attr('class', 'chart-container')
+      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
     // baseline
-    svg.append('line')
+    chartContainer.append('line')
       .attr('class', 'baseline')
       .attr('x1', 0)
       .attr('x2', width)
       .attr('y1', yScale(0))
       .attr('y2', yScale(0));
 
-    const bar = svg.selectAll('.bar')
+    const bar = chartContainer.selectAll('.bar')
         .data(data)
       .enter().append('g')
         .attr('class', 'bar')
@@ -168,17 +173,17 @@ class ColumnChart extends Component {
         if (d.value < 0) {
           return yScale(0);
         }
-        return yScale(d.value || 0)
+        return yScale(d.value || 0);
       })
       .attr('height', (d) => {
         if (d.value < 0) {
           return yScale(d.value || 0) - yScale(0);
         }
-        return yScale(0) - yScale(d.value || 0)
+        return yScale(0) - yScale(d.value || 0);
       });
 
     if (this.props.yHighlight) {
-      svg.append('line')
+      chartContainer.append('line')
         .attr('class', 'yHighlight')
         .attr('x1', 0)
         .attr('x2', width)
@@ -196,7 +201,7 @@ class ColumnChart extends Component {
   render() {
     return (
       <div>
-        <div className="renderedD3" ref={node => { this.node = node; }}>
+        <div className="renderedD3" ref={(node) => { this.node = node; }}>
           {this.state.chart}
         </div>
       </div>
