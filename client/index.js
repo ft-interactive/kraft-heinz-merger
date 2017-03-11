@@ -189,7 +189,7 @@ class App extends Component {
                   min={20}
                   max={40}
                   step={5}
-                  increments={7}
+                  increments={6}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                   label={'% premium'}
@@ -213,7 +213,7 @@ class App extends Component {
                   min={5}
                   max={15}
                   step={1}
-                  increments={10}
+                  increments={11}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                   label={'Buffett/3G equity contribution ($bn)'}
