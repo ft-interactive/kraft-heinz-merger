@@ -140,6 +140,14 @@ class ColumnChart extends Component {
         return 9;
       });
 
+    // baseline
+    svg.append('line')
+      .attr('class', 'baseline')
+      .attr('x1', 0)
+      .attr('x2', width)
+      .attr('y1', yScale(0))
+      .attr('y2', yScale(0));
+
     const bar = svg.selectAll('.bar')
         .data(data)
       .enter().append('g')
@@ -169,6 +177,15 @@ class ColumnChart extends Component {
         return yScale(0) - yScale(d.value || 0)
       });
 
+    if (this.props.yHighlight) {
+      svg.append('line')
+        .attr('class', 'yHighlight')
+        .attr('x1', 0)
+        .attr('x2', width)
+        .attr('y1', yScale(this.props.yHighlight))
+        .attr('y2', yScale(this.props.yHighlight));
+    }
+
     this.animateFauxDOM(800);
   }
 
@@ -189,6 +206,7 @@ class ColumnChart extends Component {
 
 ColumnChart.propTypes = {
   data: React.PropTypes.array,
+  yHighlight: React.PropTypes.number,
 };
 
 export default ColumnChart;

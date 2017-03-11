@@ -21,6 +21,16 @@ svg.column-chart {
       stroke-dasharray: 1, 2;
     }
   }
+  .axis path {
+    display: none;
+  }
+  .baseline {
+    stroke: $axis-color;
+    stroke-width: 2;
+  }
+  .yHighlight {
+    stroke: #000;
+  }
   text {
     font-size: 13px;
     font-weight: 400;

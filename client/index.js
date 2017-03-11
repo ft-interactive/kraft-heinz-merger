@@ -273,6 +273,7 @@ class App extends Component {
           <div className="output-container">
             <Card
               data={debtEBITDAData}
+              yHighlight={6}
               text={'Typically net debt/EBITDA over 6x is considered highly leveraged. Kraft Heinz\'s standalone net debt to EBITDA ratio is 3.4x and it has the lowest investment grade credit rating. Acquiring Unilever would like have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
               headline={'2. Kraft Heinz leverage'}
             />
