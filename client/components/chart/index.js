@@ -89,7 +89,7 @@ class ColumnChart extends Component {
 
     const svg = d3.select(chart)
         .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
+        .attr('height', height + margin.top + margin.bottom + margin.bottom)
         .attr('class', 'column-chart');
 
     const xScale = d3.scaleBand()
