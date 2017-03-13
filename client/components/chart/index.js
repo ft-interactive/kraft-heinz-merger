@@ -78,11 +78,12 @@ class ColumnChart extends Component {
     const width = this.node.offsetWidth - margin.left - margin.right;
     const calculatedHeight = Math.max(150, (this.node.offsetWidth / 3.2) + 14);
     const height = ((calculatedHeight - margin.top) - margin.bottom) + 14;
-    const breakpoint = 400;
-
-    if (width < breakpoint) {
-      data = data.slice(0, -2);
-    }
+    // @TODO Hide smallest two companies on mobile, but don't screw up resize
+    // const breakpoint = 400;
+    //
+    // if (width < breakpoint) {
+    //   data = data.slice(0, -2);
+    // }
 
     const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
     const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
