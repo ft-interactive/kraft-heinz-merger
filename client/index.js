@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import * as expander from 'o-expander'; // eslint-disable-line
+import _ from 'lodash';
 
 import Card from './components/card';
 import Range from './components/range';
 import Heatmap from './components/heatmap';
+import Select from './components/select';
 
 function roundToTenth(num) {
   return (Math.round(num * 10) / 10).toFixed(1);
@@ -52,6 +54,7 @@ class App extends Component {
 
     this.updateData = this.updateData.bind(this);
     this.updateHeatmap = this.updateHeatmap.bind(this);
+    this.addCompany = this.addCompany.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +68,18 @@ class App extends Component {
       premium: (label === 'premium' ? value : this.state.premium),
       buffettContribution: (label === 'buffett' ? value : this.state.buffettContribution),
       stockConsideration: (label === 'stock' ? value : this.state.stockConsideration),
+    });
+  }
+
+  addCompany(company) {
+    if (company) {
+      _.find(this.state.data, { category: company }).customValues = true;
+    }
+
+    const data = this.state.data;
+
+    this.setState({
+      data,
     });
   }
 
@@ -272,8 +287,13 @@ class App extends Component {
             <div className="o-grid-row">
               <div data-o-component="o-expander" className="o-expander items" data-o-expander-shrink-to="0" data-o-expander-count-selector="div" data-o-expander-expanded-toggle-text="Show fewer options" data-o-expander-collapsed-toggle-text="Click to choose different values for individual companies" data-o-grid-colspan="12" id="more-options">
                 <div className="o-expander__content">
-                  {individualCompanySliders}
-                  <div>Add company</div>
+                  <div>
+                    {individualCompanySliders}
+                    <Select
+                      data={this.state.data}
+                      onChange={this.addCompany}
+                    />
+                  </div>
                 </div>
                 <a className="o-expander__toggle o--if-js">Options</a>
               </div>
