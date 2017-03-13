@@ -11,13 +11,13 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'Merger model: the next 3G target',
+  headline: '',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Make your predictions about the next Kraft-Heinz prey',
+  summary: '',
 
   topic: {
-    name: 'Mergers & Acquisitions',
+    name: '',
     url: 'https://www.ft.com/stream/sectionsId/Mjk=-VG9waWNz',
   },
 
@@ -37,8 +37,6 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
-    { name: 'Sujeet Indap', url: 'https://www.ft.com/stream/authorsId/Q0ItMDMzNDMwNw==-QXV0aG9ycw==' },
-    { name: 'Joanna S Kao', url: 'https://www.ft.com/stream/authorsId/NWRlMDQ0Y2MtODA3Mi00N2VlLWEyZGItNWRmYTZhNDNiNWNi-QXV0aG9ycw==' },
   ],
 
   // Appears in the HTML <title>
