@@ -55,6 +55,7 @@ class App extends Component {
     this.updateData = this.updateData.bind(this);
     this.updateHeatmap = this.updateHeatmap.bind(this);
     this.addCompany = this.addCompany.bind(this);
+    this.removeCompany = this.removeCompany.bind(this);
   }
 
   componentDidMount() {
@@ -74,6 +75,18 @@ class App extends Component {
   addCompany(company) {
     if (company) {
       _.find(this.state.data, { category: company }).customValues = true;
+    }
+
+    const data = this.state.data;
+
+    this.setState({
+      data,
+    });
+  }
+
+  removeCompany(company) {
+    if (company) {
+      _.find(this.state.data, { category: company }).customValues = false;
     }
 
     const data = this.state.data;
@@ -180,7 +193,10 @@ class App extends Component {
 
     const individualCompanySliders = this.state.data.filter(d => d.customValues).map((d) => {
       return (<div className="company-slider-container">
-        <div className="company-slider-container__company-name">{d.category}</div>
+        <div className="company-slider-container__company-name">
+          {d.category}
+          <button className="o-buttons o-buttons--small o-buttons--uncolored" onClick={(event) => this.removeCompany(d.category)}>Use default values for company</button>
+        </div>
         <Range
           min={20}
           max={40}
