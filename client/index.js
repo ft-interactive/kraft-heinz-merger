@@ -366,7 +366,7 @@ class App extends Component {
           <div className="output-container">
             <div className="inline-graphic">
               <h2 className="o-typography-subhead">Breaking down the key measures</h2>
-              <p>See the choices you made above reflected in chart below. Compare and contrast.</p>
+              <p>See the choices you made above reflected in the charts below. Compare and contrast.</p>
             </div>
             <Card
               data={epsAccretionData}
