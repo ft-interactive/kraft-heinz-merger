@@ -206,7 +206,6 @@ class ColumnChart extends Component {
         initialDraw: false,
       });
     } else { // after initial draw
-      console.log('after initial draw');
       const chart = this.connectedFauxDOM.chart;
       const svg = d3.select(chart)
         .attr('width', width + margin.left + margin.right)
