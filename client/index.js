@@ -7,7 +7,7 @@ import Range from './components/range';
 import Heatmap from './components/heatmap';
 
 function roundToTenth(num) {
-  return Math.round(num * 10) / 10;
+  return (Math.round(num * 10) / 10).toFixed(1);
 }
 
 class App extends Component {
@@ -124,7 +124,7 @@ class App extends Component {
 
     const enterpriseValueData = this.state.data.map((d) => {
       const cat = d.category;
-      const value = d.enterpriseValue / 1000;
+      const value = roundToTenth(d.enterpriseValue / 1000);
 
       return {
         category: cat,
@@ -144,7 +144,7 @@ class App extends Component {
 
     const buffett3GOwnershipData = this.state.data.map((d) => {
       const cat = d.category;
-      const value = d.buffett3GOwnership - 50.1; // get percentage pt diff from 50.1
+      const value = roundToTenth(d.buffett3GOwnership - 50.1); // get percentage pt diff from 50.1
 
       return {
         category: cat,

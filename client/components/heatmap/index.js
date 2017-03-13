@@ -29,18 +29,18 @@ class Heatmap extends Component {
   }
 
   render() {
-    const epsAccretionMinMax = d3.extent(this.props.data.map(d => d.epsAccretion));
+    const epsAccretionMinMax = d3.extent(this.props.data.map(d => +d.epsAccretion));
     const epsAccretionColorScale = d3.scaleLinear()
       .domain(epsAccretionMinMax)
       .range(['#A5526A', '#FFF1e0']);
 
-    const debtEBITDAMinMax = d3.extent(this.props.data.map(d => d.debtEBITDA));
+    const debtEBITDAMinMax = d3.extent(this.props.data.map(d => +d.debtEBITDA));
     const debtEBITDAColorScale = d3.scaleLinear()
       .domain(debtEBITDAMinMax)
       .range(['#FFF1e0', '#A5526A']);
 
     const buffett3GOwnershipColorScale = (value) => {
-      if (value < 50) {
+      if (+value < 50) {
         return 'rgb(239, 213, 203)';
       }
       return 'rgb(183, 113, 129)';
@@ -48,24 +48,27 @@ class Heatmap extends Component {
 
     const heatmapData = this.props.data.map((d) => {
       const epsAccretionStyle = {
-        background: epsAccretionColorScale(d.epsAccretion),
+        background: epsAccretionColorScale(+d.epsAccretion),
       };
 
       const debtEBITDAStyle = {
-        background: debtEBITDAColorScale(d.debtEBITDA),
+        background: debtEBITDAColorScale(+d.debtEBITDA),
       };
 
       const buffett3GOwnershipStyle = {
-        background: buffett3GOwnershipColorScale(d.buffett3GOwnership),
+        background: buffett3GOwnershipColorScale(+d.buffett3GOwnership),
       };
 
       const rowKey = `${d.raw.displayName}-row`;
+      const cellEpsAccretion = `${d.epsAccretion}-epsaccretion`;
+      const cellDebtEBITDA = `${d.debtEBITDA}-debtebitda`;
+      const cellBuffett3GOwnership = `${d.buffett3GOwnership}-buffett3GOwnership`;
 
       return (<tr key={rowKey}>
         <td key={d.raw.displayName}>{d.raw.displayName}</td>
-        <td key={d.epsAccretion} style={epsAccretionStyle}>{d.epsAccretion}</td>
-        <td key={d.debtEBITDA} style={debtEBITDAStyle}>{d.debtEBITDA}x</td>
-        <td key={d.buffett3GOwnership} style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
+        <td key={cellEpsAccretion} style={epsAccretionStyle}>{d.epsAccretion}</td>
+        <td key={cellDebtEBITDA} style={debtEBITDAStyle}>{d.debtEBITDA}x</td>
+        <td key={cellBuffett3GOwnership} style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
       </tr>);
     });
 
