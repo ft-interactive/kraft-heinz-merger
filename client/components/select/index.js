@@ -15,7 +15,7 @@ class Select extends Component {
   render() {
     return (
       <div>
-        <label htmlFor="addCompany">Choose a company</label>
+        <label htmlFor="addCompany">Choose a company to customize</label>
         <select id="addCompany" onChange={event => this.handleChange(event.target.value)}>
           <option />
           {this.props.data.filter(d => !d.customValues).map(d => (<option>{d.category}</option>))}
