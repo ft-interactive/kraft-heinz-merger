@@ -127,12 +127,13 @@ class App extends Component {
   }
 
   updateHeatmap() {
-    const premium = this.state.premium / 100; // needs to be in decimal format
-    const buffettContribution = this.state.buffettContribution * 1000; // (input is in billions)
-    const stockConsideration = this.state.stockConsideration / 100; // needs to be in decimal format
-
     const data = this.state.data;
     data.forEach((d) => {
+      // set premium, buffettContribution and stockConsideration based on default inputs unless users has selected specific inputs for a company
+      const premium = (d.premium ? d.premium / 100 : this.state.premium / 100); // needs to be in decimal format
+      const buffettContribution = (d.buffettContribution ? d.buffettContribution * 1000 : this.state.buffettContribution * 1000); // (input is in billions)
+      const stockConsideration = (d.stockConsideration ? d.stockConsideration / 100 : this.state.stockConsideration / 100); // needs to be in decimal format
+
       // debtEBITDAA = Kraft standalone debt + target standalone net debt + [ (standalone target stock price * target share count * exchange rate)* (1+ premium) - Berkshire-3G contribution- ( (standalone target stock price * target share count * exchange rate)* (1+ premium) * % stock consideration)]
       const debtEBITDAA = this.state.kraftConstantData[0]['Net Debt'] +
             d.raw['Net Debt'] +
