@@ -144,7 +144,7 @@ class App extends Component {
 
     const buffett3GOwnershipData = this.state.data.map((d) => {
       const cat = d.category;
-      const value = d.buffett3GOwnership - 50; // get percentage pt diff from 50
+      const value = d.buffett3GOwnership - 50.1; // get percentage pt diff from 50.1
 
       return {
         category: cat,
