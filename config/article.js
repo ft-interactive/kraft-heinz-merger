@@ -11,10 +11,10 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'The next set of companies Kraft Heinz could be targeting',
+  headline: 'Merger model: the next 3G target',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'The acquisitive American consumer group now sets its sights on smaller targets after abandoning pursuit of Unilever',
+  summary: 'Make your own predictions about the next prey for Kraft-Heinz, as the 3G Capital/Buffett backed consumer group sets its sights on another deal',
 
   topic: {
     name: 'Mergers & Acquisitions',

@@ -174,14 +174,14 @@ class App extends Component {
             <h2 className="o-typography-heading3">Make your own predictions</h2>
             <div className="o-grid-row">
               <div data-o-grid-colspan="12 L9">
-                <p>Kraft Heinz must pay enough to convince a target company to sell themselves but also must guard against issuing too much debt to pay for the deal. We have included Unilever as a choice to use as a comparison.</p>
+                <p>Kraft Heinz must pay enough to convince a target company to sell but also  guard against using too much debt. Any deal will also require a swag of new equity, with new shares to be issued to the Kraft-Heinz 51 per cent backers, 3G and Warren Buffett, and even to the target shareholders.</p>
 
-                <p>Therefore choose:</p>
+                <p>Using the sliding bars below, choose:</p>
 
                 <ol>
-                  <li>a premium that Kraft Heinz will have to pay to the target shareholders</li>
-                  <li>the proportion of Kraft Heinz stock they will issue to the target company</li>
-                  <li>How much equity they will sell collectively to Warren Buffett and 3G Capital</li>
+                  <li>The premium Kraft Heinz will have to pay to target shareholders</li>
+                  <li>The proportion of Kraft Heinz stock that would be issued to the target</li>
+                  <li>How much equity will need to be issued to Buffett and 3G Capital</li>
                 </ol>
               </div>
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
@@ -227,7 +227,7 @@ class App extends Component {
               </div>
             </div>
             <div className="o-grid-row">
-              <div data-o-component="o-expander" className="o-expander items" data-o-expander-shrink-to="0" data-o-expander-count-selector="div" data-o-expander-expanded-toggle-text="Show fewer options" data-o-expander-collapsed-toggle-text="Click for choose different values for individual companies" data-o-grid-colspan="12" id="more-options">
+              <div data-o-component="o-expander" className="o-expander items" data-o-expander-shrink-to="0" data-o-expander-count-selector="div" data-o-expander-expanded-toggle-text="Show fewer options" data-o-expander-collapsed-toggle-text="Click to choose different values for individual companies" data-o-grid-colspan="12" id="more-options">
                 <div className="o-expander__content">
                   <div>
                     <b>Campbell</b> (% premium): <input type="number" />
@@ -261,8 +261,8 @@ class App extends Component {
           <div className="output-container">
             <Card
               data={epsAccretionData}
-              text={'Earnings per share accretion is the metric companyies are trying to maximise in M&A deals. Kraft Heinz will acquire the target company\'s net income but, in exchange, owe interest expense on the new debt. And new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G for the equity they purchase. It is obvious why Kraft Heinz ambitiously pursued Unilever: because of its the sheer size of its earnings base, it could provide a huge boost to Kraft Heinz earnings. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23x earnings without any premium, likely making an acquisition dilutive to Kraft Heinz earnings.'}
-              headline={'1. 2018 estimated earnings impact to Kraft'}
+              text={'The goal in M&A is earnings per share accretion. Kraft Heinz will acquire the target company\'s net income but will also owe interest on the new debt.  As new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G for the equity they purchase, this will cause a further dilution. In making the calculation, it is obvious why Kraft Heinz ambitiously pursued Unilever: because of the sheer size of its earnings base. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23 times earnings even without any premium, making it likely to dilute Kraft Heinz earnings on acquisition.'}
+              headline={'1. Impact on Kraft-Heinz 2018 earnings'}
             />
           </div>
 
@@ -270,15 +270,15 @@ class App extends Component {
             <Card
               data={debtEBITDAData}
               yHighlight={6}
-              text={'Typically net debt/EBITDA over 6x is considered highly leveraged. Kraft Heinz\'s standalone net debt to EBITDA ratio is 3.4x and it has the lowest investment grade credit rating. Acquiring Unilever would like have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
+              text={'Typically net debt/EBITDA of more than 6 times is considered high. Kraft Heinz\'s standalone net debt to EBITDA ratio is 3.4 times and it has the lowest investment grade credit rating, making interest costs higher. Acquiring Unilever would likely have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
               headline={'2. Kraft Heinz leverage'}
             />
           </div>
           <div className="output-container">
             <Card
               data={buffett3GOwnershipData}
-              text={'Buffett/3G currently own half of Kraft Heinz. For any given Buffett/3G contribution in an acquisition, the smaller the target company, the greater proportion they will own of Kraft Heinz.'}
-              headline={'3. Buffett/3G ownership of Kraft Heinz'}
+              text={'Buffett/3G presently own just over half of Kraft Heinz. In calculating any given Buffett/3G contribution to an acquisition, the smaller the target company, the greater proportion of Kraft Heinz these investors will own.'}
+              headline={'Buffett/3G creeping ownership of Kraft Heinz'}
               subhead={'percentage point difference from current ownership'}
             />
           </div>
