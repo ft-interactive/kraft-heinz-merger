@@ -10,6 +10,7 @@ class ColumnChart extends Component {
     this.state = {
       // Placeholder content displayed before chart render
       chart: 'Loading chart…',
+      initialDraw: true,
     };
 
     this.handleResize = this.handleResize.bind(this);
@@ -39,7 +40,7 @@ class ColumnChart extends Component {
     this.drawChart(nextProps.data);
   }
 
-  drawChart(inputData=this.props.data) {
+  drawChart(inputData = this.props.data) {
     function wrap(text, width) {
       text.each(function() {
         var text = d3.select(this),
@@ -67,7 +68,6 @@ class ColumnChart extends Component {
 
     let data = inputData;
 
-    const chart = this.connectFauxDOM('svg', 'chart');
     const margin = { // Mike Bostock's margin convention
       top: 10,
       right: 40,
@@ -86,11 +86,6 @@ class ColumnChart extends Component {
 
     const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
     const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
-
-    const svg = d3.select(chart)
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom + margin.bottom)
-        .attr('class', 'column-chart');
 
     const xScale = d3.scaleBand()
         .domain(data.map(d => d.category))
@@ -112,83 +107,183 @@ class ColumnChart extends Component {
         .tickSize(width, 0)
         .tickPadding(10);
 
-    svg.append('g')
-        .attr('class', 'y axis')
-        .attr('transform', `translate(${margin.left}, ${margin.top})`)
-        .call(yAxis)
-      .selectAll('text')
-        .style('text-anchor', 'start');
+    if (this.state.initialDraw) {
+      const chart = this.connectFauxDOM('svg', 'chart');
 
-    svg.select('.y')
-      .append('text')
-        .attr('class', 'label')
-        .attr('x', width)
-        .attr('y', -4)
-        .style('text-anchor', 'end');
+      const svg = d3.select(chart)
+          .attr('width', width + margin.left + margin.right)
+          .attr('height', height + margin.top + margin.bottom + margin.bottom)
+          .attr('class', 'column-chart');
 
-    svg.append('g')
-        .attr('class', 'x axis')
-        .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
-        .call(xAxis);
-      // .selectAll('.tick text')
-      //   .call(wrap, xScale.bandwidth());
+      svg.append('g')
+          .attr('class', 'y axis')
+          .attr('transform', `translate(${margin.left}, ${margin.top})`)
+          .call(yAxis)
+        .selectAll('text')
+          .style('text-anchor', 'start');
 
-    svg.selectAll('.x .tick text')
-      .attr('y', (d, i) => {
-        if (i % 2 === 1) {
-          return 30;
-        }
-        return 9;
-      });
+      svg.select('.y')
+        .append('text')
+          .attr('class', 'label')
+          .attr('x', width)
+          .attr('y', -4)
+          .style('text-anchor', 'end');
 
-    const chartContainer = svg.append('g')
-      .attr('class', 'chart-container')
-      .attr('transform', `translate(${margin.left}, ${margin.top})`);
+      svg.append('g')
+          .attr('class', 'x axis')
+          .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
+          .call(xAxis);
+        // .selectAll('.tick text')
+        //   .call(wrap, xScale.bandwidth());
 
-    // baseline
-    chartContainer.append('line')
-      .attr('class', 'baseline')
-      .attr('x1', 0)
-      .attr('x2', width)
-      .attr('y1', yScale(0))
-      .attr('y2', yScale(0));
+      svg.selectAll('.x .tick text')
+        .attr('y', (d, i) => {
+          if (i % 2 === 1) {
+            return 30;
+          }
+          return 9;
+        });
 
-    const bar = chartContainer.selectAll('.bar')
+      const chartContainer = svg.append('g')
+        .attr('class', 'chart-container')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+      // baseline
+      chartContainer.append('line')
+        .attr('class', 'baseline')
+        .attr('x1', 0)
+        .attr('x2', width)
+        .attr('y1', yScale(0))
+        .attr('y2', yScale(0));
+
+      const bar = chartContainer.selectAll('.bar')
         .data(data)
       .enter().append('g')
         .attr('class', 'bar')
         .attr('transform', d => `translate(${xScale(d.category) + (xScale.bandwidth() / 4)}, 0)`);
 
-    const rect = bar.append('rect')
-        .attr('x', 1)
+      const rect = bar.append('rect')
+          .attr('x', 1)
+          .attr('y', yScale(0))
+          .attr('width', xScale.bandwidth() / 2)
+          .attr('height', 0)
+          .attr('fill', d => (d.value < 0 ? '#F19F9E' : '#A5526A'));
+
+      rect.transition()
+        .delay((d, i) => i * 7.5)
+        .duration(500)
+        .attr('y', (d) => {
+          if (d.value < 0) {
+            return yScale(0);
+          }
+          return yScale(d.value || 0);
+        })
+        .attr('height', (d) => {
+          if (d.value < 0) {
+            return yScale(d.value || 0) - yScale(0);
+          }
+          return yScale(0) - yScale(d.value || 0);
+        });
+
+      bar.append('text')
+        .text(d => d.value)
+        .attr('class', 'column-chart__label')
+        .attr('x', xScale.bandwidth() / 4)
         .attr('y', yScale(0))
-        .attr('width', xScale.bandwidth() / 2)
-        .attr('height', 0)
-        .attr('fill', d => (d.value < 0 ? '#F19F9E' : '#A5526A'));
+        .attr('text-anchor', 'middle');
 
-    rect.transition()
-      .delay((d, i) => i * 7.5)
-      .duration(500)
-      .attr('y', (d) => {
-        if (d.value < 0) {
-          return yScale(0);
-        }
-        return yScale(d.value || 0);
-      })
-      .attr('height', (d) => {
-        if (d.value < 0) {
-          return yScale(d.value || 0) - yScale(0);
-        }
-        return yScale(0) - yScale(d.value || 0);
+      if (this.props.yHighlight) {
+        chartContainer.append('line')
+          .attr('class', 'yHighlight')
+          .attr('x1', 0)
+          .attr('x2', width)
+          .attr('y1', yScale(this.props.yHighlight))
+          .attr('y2', yScale(this.props.yHighlight));
+      }
+
+      this.setState({
+        initialDraw: false,
       });
+    } else { // after initial draw
+      console.log('after initial draw');
+      const chart = this.connectedFauxDOM.chart;
+      const svg = d3.select(chart)
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom + margin.bottom);
 
-    if (this.props.yHighlight) {
-      chartContainer.append('line')
-        .attr('class', 'yHighlight')
+      svg.select('g.y.axis')
+          .attr('transform', `translate(${margin.left}, ${margin.top})`)
+          .call(yAxis)
+        .selectAll('text')
+          .style('text-anchor', 'start');
+
+      svg.select('.y text')
+        .attr('class', 'label')
+        .attr('x', width)
+        .attr('y', -4)
+        .style('text-anchor', 'end');
+
+      svg.select('g.x.axis')
+          .attr('class', 'x axis')
+          .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
+          .call(xAxis);
+        // .selectAll('.tick text')
+        //   .call(wrap, xScale.bandwidth());
+
+      svg.selectAll('.x .tick text')
+        .attr('y', (d, i) => {
+          if (i % 2 === 1) {
+            return 30;
+          }
+          return 9;
+        });
+
+      const chartContainer = svg.select('g.chart-container')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+      // baseline
+      chartContainer.select('line.baseline')
         .attr('x1', 0)
         .attr('x2', width)
-        .attr('y1', yScale(this.props.yHighlight))
-        .attr('y2', yScale(this.props.yHighlight));
+        .attr('y1', yScale(0))
+        .attr('y2', yScale(0));
+
+      const bar = chartContainer.selectAll('.bar')
+        .data(data)
+        .attr('transform', d => `translate(${xScale(d.category) + (xScale.bandwidth() / 4)}, 0)`);
+
+
+      bar.select('text.column-chart__label')
+        .text(d => d.value)
+        .attr('x', xScale.bandwidth() / 4)
+        .attr('y', yScale(0))
+        .attr('text-anchor', 'middle');
+
+      bar.select('rect')
+        .transition()
+        .attr('x', 1)
+        .attr('width', xScale.bandwidth() / 2)
+        .attr('y', (d) => {
+          if (d.value < 0) {
+            return yScale(0);
+          }
+          return yScale(d.value || 0);
+        })
+        .attr('height', (d) => {
+          if (d.value < 0) {
+            return yScale(d.value || 0) - yScale(0);
+          }
+          return yScale(0) - yScale(d.value || 0);
+        })
+        .attr('fill', d => (d.value < 0 ? '#F19F9E' : '#A5526A'));
+
+      if (this.props.yHighlight) {
+        chartContainer.select('line.yHighlight')
+          .attr('x1', 0)
+          .attr('x2', width)
+          .attr('y1', yScale(this.props.yHighlight))
+          .attr('y2', yScale(this.props.yHighlight));
+      }
     }
 
     this.animateFauxDOM(800);

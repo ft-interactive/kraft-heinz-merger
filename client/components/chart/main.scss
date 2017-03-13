@@ -35,6 +35,11 @@ svg.column-chart {
     font-size: 13px;
     font-weight: 400;
     fill: $tick-label-color;
+
+    &.column-chart__label {
+      fill: #000;
+      font-weight: 600;
+    }
   }
   .bar {
     fill: $distribution-color;
