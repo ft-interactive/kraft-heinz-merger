@@ -26,7 +26,7 @@ class Range extends Component {
     window.addEventListener('resize', _.throttle(this.handleResize, 500));
   }
 
-  handleChange(label, value) {
+  handleChange(label, value, category) {
     const inputValue = parseInt(value, 10);
     const num = isNaN(inputValue) ? 0 : inputValue; // Ensure input value is a number
     const incrementWidth = this.state.incrementWidth;
@@ -40,7 +40,7 @@ class Range extends Component {
       rangeOverlayPosition,
     });
 
-    this.props.onSubmit(label, num);
+    this.props.onSubmit(label, num, category);
   }
 
   handleResize() {
@@ -101,12 +101,13 @@ class Range extends Component {
             >
               <input
                 id={this.props.labelName}
+                category={this.props.category}
                 type="range"
                 min={this.props.min}
                 max={this.props.max}
                 step={this.props.step}
                 value={this.state.value}
-                onChange={event => this.handleChange(this.props.labelName, event.target.value)}
+                onChange={event => this.handleChange(this.props.labelName, event.target.value, this.props.category)}
                 disabled={this.state.rangeDisabled}
                 ref={(node) => { this.rangeInput = node; }}
               />
@@ -157,6 +158,7 @@ class Range extends Component {
 }
 
 Range.propTypes = {
+  category: React.PropTypes.string,
   min: React.PropTypes.number,
   max: React.PropTypes.number,
   increments: React.PropTypes.number,

@@ -47,6 +47,9 @@ class App extends Component {
         buffett3GOwnership,
         raw: d,
         customValues: false,
+        premium: null,
+        stockConsideration: null,
+        buffettContribution: null,
       };
     }).sort((a, b) => b.enterpriseValue - a.enterpriseValue);
 
@@ -62,14 +65,38 @@ class App extends Component {
     expander.init(null, {});
   }
 
-  updateData(label, value) {
-    console.log('update heatmap', label, value);
+  updateData(label, value, category) {
+    console.log('update heatmap', label, value, category);
 
-    this.setState({
-      premium: (label === 'premium' ? value : this.state.premium),
-      buffettContribution: (label === 'buffett' ? value : this.state.buffettContribution),
-      stockConsideration: (label === 'stock' ? value : this.state.stockConsideration),
-    });
+    if (category === 'default') {
+      this.setState({
+        premium: (label === 'premium' ? value : this.state.premium),
+        buffettContribution: (label === 'buffett' ? value : this.state.buffettContribution),
+        stockConsideration: (label === 'stock' ? value : this.state.stockConsideration),
+      });
+    } else {
+      if (_.find(this.state.data, { category })) {
+        switch (label) {
+          case 'premium':
+            _.find(this.state.data, { category }).premium = value;
+            break;
+          case 'buffett':
+            _.find(this.state.data, { category }).buffettContribution = value;
+            break;
+          case 'stock':
+            _.find(this.state.data, { category }).stockConsideration = value;
+            break;
+          default:
+            break;
+        }
+      }
+
+      const data = this.state.data;
+
+      this.setState({
+        data,
+      });
+    }
   }
 
   addCompany(company) {
@@ -87,6 +114,9 @@ class App extends Component {
   removeCompany(company) {
     if (company) {
       _.find(this.state.data, { category: company }).customValues = false;
+      _.find(this.state.data, { category: company }).premium = null;
+      _.find(this.state.data, { category: company }).buffettContribution = null;
+      _.find(this.state.data, { category: company }).stockConsideration = null;
     }
 
     const data = this.state.data;
@@ -198,6 +228,7 @@ class App extends Component {
           <button className="o-buttons o-buttons--small o-buttons--uncolored" onClick={(event) => this.removeCompany(d.category)}>Use default values for company</button>
         </div>
         <Range
+          category={d.category}
           min={20}
           max={40}
           step={5}
@@ -210,6 +241,7 @@ class App extends Component {
           onSubmit={this.updateData}
         />
         <Range
+          category={d.category}
           min={0}
           max={25}
           step={5}
@@ -222,6 +254,7 @@ class App extends Component {
           onSubmit={this.updateData}
         />
         <Range
+          category={d.category}
           min={5}
           max={15}
           step={1}
@@ -260,6 +293,7 @@ class App extends Component {
               </div>
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
                 <Range
+                  category={'default'}
                   min={20}
                   max={40}
                   step={5}
@@ -272,6 +306,7 @@ class App extends Component {
                   onSubmit={this.updateData}
                 />
                 <Range
+                  category={'default'}
                   min={0}
                   max={25}
                   step={5}
@@ -284,6 +319,7 @@ class App extends Component {
                   onSubmit={this.updateData}
                 />
                 <Range
+                  category={'default'}
                   min={5}
                   max={15}
                   step={1}
