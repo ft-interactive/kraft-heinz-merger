@@ -66,7 +66,7 @@ class ColumnChart extends Component {
       });
     }
 
-    let data = inputData;
+    const data = inputData;
 
     const margin = { // Mike Bostock's margin convention
       top: 10,
@@ -85,8 +85,8 @@ class ColumnChart extends Component {
     //   data = data.slice(0, -2);
     // }
 
-    const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => d.value)) / 5)) - 5, 0);
-    const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => d.value)) / 5)) + 5;
+    const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => +d.value)) / 5)) - 5, 0);
+    const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => +d.value)) / 5)) + 5;
 
     const xScale = d3.scaleBand()
         .domain(data.map(d => d.category))
