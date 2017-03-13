@@ -131,6 +131,10 @@ $share-button-size: 38px;
   .o-expander__toggle {
     font-size: 18px;
   }
+
+  .o-expander__content.o-expander__content--expanded {
+    margin-bottom: 2em;
+  }
 }
 
 .company-slider-container {
