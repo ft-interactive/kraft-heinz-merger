@@ -280,23 +280,25 @@ class App extends Component {
       <div>
         <Card
           data={enterpriseValueData}
-          headline={'Kraft is likely to look for a company with an aggregate value between $30bn and $90bn'}
+          headline={'Target values: between $30bn and $90bn'}
           subhead={'$bn'}
         />
         <div className="graphic" id="userinput-wrapper">
           <div id="userinput-container" className="o-grid-container">
-            <h2 className="o-typography-heading3">Make your own predictions</h2>
+            <h2 className="o-typography-heading3">Choose a target and name your price</h2>
             <div className="o-grid-row">
               <div data-o-grid-colspan="12 L9">
-                <p>Kraft Heinz must pay enough to convince a target company to sell but also  guard against using too much debt. Any deal will also require a swag of new equity, with new shares to be issued to the Kraft-Heinz 51 per cent backers, 3G and Warren Buffett, and even to the target shareholders.</p>
+                <p>Kraft Heinz must pay enough to convince a target company to sell but also  guard against using too much debt to fund the purchase. Any deal will also require a swag of new equity, with shares to be issued to the Kraft Heinz 51 per cent backers, 3G and Warren Buffett, and even to the target shareholders. </p>
 
                 <p>Using the sliding bars below, choose:</p>
 
                 <ol>
-                  <li>The premium Kraft Heinz will have to pay to target shareholders</li>
+                  <li>The premium Kraft Heinz will pay to target shareholders</li>
                   <li>The proportion of Kraft Heinz stock that would be issued to the target</li>
                   <li>How much equity will need to be issued to Buffett and 3G Capital</li>
                 </ol>
+
+                <p>Watch the changes in the table recording the impact on key measures.</p>
               </div>
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
                 <Range
@@ -362,10 +364,15 @@ class App extends Component {
         </div>
         <div id="output-wrapper">
           <div className="output-container">
+            <div className="inline-graphic">
+              <h2 className="o-typography-subhead">Breaking down the key measures</h2>
+              <p>See the choices you made above reflected in chart below. Compare and contrast.</p>
+            </div>
             <Card
               data={epsAccretionData}
-              text={'The goal in M&A is earnings per share accretion. Kraft Heinz will acquire the target company\'s net income but will also owe interest on the new debt.  As new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G for the equity they purchase, this will cause a further dilution. In making the calculation, it is obvious why Kraft Heinz ambitiously pursued Unilever: because of the sheer size of its earnings base. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23 times earnings even without any premium, making it likely to dilute Kraft Heinz earnings on acquisition.'}
+              text={'The goal in M&A is earnings per share growth. Kraft Heinz will acquire the target company\'s net income but will also owe interest on the new debt.  As new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G, this will cause further dilution. This calculation makes it obvious why Kraft Heinz ambitiously pursued Unilever: because of the sheer size of its earnings base. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23 times earnings even without any premium, making it likely to dilute Kraft Heinz earnings on acquisition.'}
               headline={'1. Impact on Kraft-Heinz 2018 earnings'}
+              subhead={'Values based on your inputs above'}
             />
           </div>
 
@@ -375,6 +382,7 @@ class App extends Component {
               yHighlight={6}
               text={'Typically net debt/EBITDA of more than 6 times is considered high. Kraft Heinz\'s standalone net debt to EBITDA ratio is 3.4 times and it has the lowest investment grade credit rating, making interest costs higher. Acquiring Unilever would likely have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
               headline={'2. Kraft Heinz leverage'}
+              subhead={'Values based on your inputs above'}
             />
           </div>
           <div className="output-container">
@@ -382,7 +390,7 @@ class App extends Component {
               data={buffett3GOwnershipData}
               text={'Buffett/3G presently own just over half of Kraft Heinz. In calculating any given Buffett/3G contribution to an acquisition, the smaller the target company, the greater proportion of Kraft Heinz these investors will own.'}
               headline={'3. Buffett/3G creeping ownership of Kraft Heinz'}
-              subhead={'percentage point difference from current ownership'}
+              subhead={'percentage point difference from current ownership, values based on your inputs above'}
             />
           </div>
         </div>

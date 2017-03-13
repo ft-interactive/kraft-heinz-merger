@@ -14,7 +14,7 @@ export default () => ({ // eslint-disable-line
   headline: 'Merger model: the next 3G target',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Make your own predictions about the next prey for Kraft-Heinz, as the 3G Capital/Buffett backed consumer group sets its sights on another deal',
+  summary: 'Make your predictions about the next Kraft-Heinz prey',
 
   topic: {
     name: 'Mergers & Acquisitions',
