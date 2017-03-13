@@ -280,7 +280,7 @@ class App extends Component {
       <div>
         <Card
           data={enterpriseValueData}
-          headline={'Target values: between $30bn and $90bn'}
+          headline={'Companies in the sights'}
           subhead={'$bn'}
         />
         <div className="graphic" id="userinput-wrapper">
