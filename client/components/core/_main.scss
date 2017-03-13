@@ -137,20 +137,39 @@ $share-button-size: 38px;
   }
 }
 
+#individual-company-sliders-header {
+  width: 100%;
+  margin-left: 25%;
+  display: inline-block;
+
+  div {
+    width: 25%;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    font-size: 16px;
+    color: #6b6e68;
+    font-weight: 600;
+  }
+}
+
 .company-slider-container {
   .company-slider-container__company-name {
-    width: 100%;
+    width: 25%;
     font-weight: 600;
+    display: inline-block;
+    margin-top: 24px;
   }
 
   .input {
-    width: 33%;
+    width: 25%;
     display: inline-block;
     vertical-align: top;
   }
 
   button {
-    margin-left: 10px;
+    display: block;
+    margin-top: 10px;
   }
 }
 

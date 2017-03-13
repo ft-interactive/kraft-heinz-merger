@@ -222,11 +222,20 @@ class App extends Component {
       };
     });
 
+    let individualCompanyHeader;
+    if (this.state.data.filter(d => d.customValues).length > 0) {
+      individualCompanyHeader = (<div id="individual-company-sliders-header">
+        <div>% premium</div>
+        <div>% in stock</div>
+        <div>Buffett/3G equity contribution ($bn)</div>
+      </div>);
+    }
+
     const individualCompanySliders = this.state.data.filter(d => d.customValues).map((d) => {
       return (<div className="company-slider-container">
         <div className="company-slider-container__company-name">
           {d.category}
-          <button className="o-buttons o-buttons--small o-buttons--uncolored" onClick={(event) => this.removeCompany(d.category)}>Use default values for company</button>
+          <button className="o-buttons o-buttons--small o-buttons--uncolored" onClick={() => this.removeCompany(d.category)}>Use default values</button>
         </div>
         <Range
           category={d.category}
@@ -236,7 +245,6 @@ class App extends Component {
           increments={6}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-          label={'% premium'}
           labelName={'premium'}
           unit={'%'}
           onSubmit={this.updateData}
@@ -249,7 +257,6 @@ class App extends Component {
           increments={7}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-          label={'% in stock'}
           labelName={'stock'}
           unit={'%'}
           onSubmit={this.updateData}
@@ -262,7 +269,6 @@ class App extends Component {
           increments={11}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-          label={'Buffett/3G equity contribution ($bn)'}
           labelName={'buffett'}
           unit={'$'}
           onSubmit={this.updateData}
@@ -341,6 +347,7 @@ class App extends Component {
               <div data-o-component="o-expander" className="o-expander items" data-o-expander-shrink-to="0" data-o-expander-count-selector="div" data-o-expander-expanded-toggle-text="Show fewer options" data-o-expander-collapsed-toggle-text="Click to choose different values for individual companies" data-o-grid-colspan="12" id="more-options">
                 <div className="o-expander__content">
                   <div>
+                    {individualCompanyHeader}
                     {individualCompanySliders}
                     <Select
                       data={this.state.data}
