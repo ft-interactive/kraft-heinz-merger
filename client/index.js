@@ -44,6 +44,7 @@ class App extends Component {
         debtEBITDA,
         buffett3GOwnership,
         raw: d,
+        customValues: false,
       };
     }).sort((a, b) => b.enterpriseValue - a.enterpriseValue);
 
@@ -162,6 +163,48 @@ class App extends Component {
       };
     });
 
+    const individualCompanySliders = this.state.data.filter(d => d.customValues).map((d) => {
+      return (<div className="company-slider-container">
+        <div className="company-slider-container__company-name">{d.category}</div>
+        <Range
+          min={20}
+          max={40}
+          step={5}
+          increments={6}
+          overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
+          thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+          label={'% premium'}
+          labelName={'premium'}
+          unit={'%'}
+          onSubmit={this.updateData}
+        />
+        <Range
+          min={0}
+          max={25}
+          step={5}
+          increments={7}
+          overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
+          thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+          label={'% in stock'}
+          labelName={'stock'}
+          unit={'%'}
+          onSubmit={this.updateData}
+        />
+        <Range
+          min={5}
+          max={15}
+          step={1}
+          increments={11}
+          overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
+          thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+          label={'Buffett/3G equity contribution ($bn)'}
+          labelName={'buffett'}
+          unit={'$'}
+          onSubmit={this.updateData}
+        />
+      </div>);
+    });
+
     return (
       <div>
         <Card
@@ -229,28 +272,8 @@ class App extends Component {
             <div className="o-grid-row">
               <div data-o-component="o-expander" className="o-expander items" data-o-expander-shrink-to="0" data-o-expander-count-selector="div" data-o-expander-expanded-toggle-text="Show fewer options" data-o-expander-collapsed-toggle-text="Click to choose different values for individual companies" data-o-grid-colspan="12" id="more-options">
                 <div className="o-expander__content">
-                  <div>
-                    <b>Campbell</b> (% premium): <input type="number" />
-                    (% cost cut): <input type="number" />
-
-                    <br />
-                    <br />
-
-                    <b>Clorox</b> (% premium): <input type="number" />
-                    (% cost cut): <input type="number" />
-
-                    <br />
-                    <br />
-
-                    <b>Colgate</b> (% premium): <input type="number" />
-                    (% cost cut): <input type="number" />
-
-                    <br />
-                    <br />
-
-                    <b>Kellogg</b> (% premium): <input type="number" />
-                    (% cost cut): <input type="number" />
-                  </div>
+                  {individualCompanySliders}
+                  <div>Add company</div>
                 </div>
                 <a className="o-expander__toggle o--if-js">Options</a>
               </div>
