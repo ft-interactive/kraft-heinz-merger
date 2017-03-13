@@ -9,7 +9,7 @@ class Card extends Component {
 
   render() {
     return (
-      <div className="inline-graphic" id="chart-enterprise-value">
+      <div className="inline-graphic">
         <h2 className="o-typography-subhead">{this.props.headline}</h2>
         <p>{this.props.text}</p>
         <p className="o-typography-lead--small">{this.props.subhead}</p>
