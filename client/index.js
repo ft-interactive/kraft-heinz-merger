@@ -166,7 +166,7 @@ class App extends Component {
       <div>
         <Card
           data={enterpriseValueData}
-          headline={'Kraft is likely to look for a company with an aggregate value between $40bn and $100bn'}
+          headline={'Kraft is likely to look for a company with an aggregate value between $30bn and $90bn'}
           subhead={'$bn'}
         />
         <div className="graphic" id="userinput-wrapper">
@@ -278,7 +278,7 @@ class App extends Component {
             <Card
               data={buffett3GOwnershipData}
               text={'Buffett/3G presently own just over half of Kraft Heinz. In calculating any given Buffett/3G contribution to an acquisition, the smaller the target company, the greater proportion of Kraft Heinz these investors will own.'}
-              headline={'Buffett/3G creeping ownership of Kraft Heinz'}
+              headline={'3. Buffett/3G creeping ownership of Kraft Heinz'}
               subhead={'percentage point difference from current ownership'}
             />
           </div>
