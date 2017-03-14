@@ -81,22 +81,9 @@ class Range extends Component {
               rangeDisabled: true,
               submitDisabled: true,
             });
-            // this.props.onSubmit(event, this.state.value);
-            // TODO: comment out the lines below if you don't want the things to fade out
-            // this.submitButton.style.opacity = 0;
-            // this.rangeInput.classList.add('hidden');
-            // this.rangeLabels.classList.add('hidden');
-            // this.output.classList.add('hidden');
           }}
           className="range-input"
         >
-          {/* <div
-            className="range-labels"
-            ref={node => { this.rangeLabels = node; }}
-          >
-
-          </div> */}
-
           <div className="range-container">
             <div className="range-labels range-labels-min">
               <span>{this.props.min}{this.props.unit}</span>
@@ -132,32 +119,13 @@ class Range extends Component {
           </div>
 
           <div className="sub-labels-container">
-            {/* <div className="sub-labels sub-labels-l">
-              <i className="icon-arrow-left" />
-              <span>Strongly disagree</span>
-            </div>*/}
             <div className="sub-labels sub-labels-c">
               <label htmlFor={this.props.labelName}>
                 <span>{this.props.label}</span>
               </label>
             </div>
-            {/* <div className="sub-labels sub-labels-r">
-              <span>Strongly agree</span>
-              <i className="icon-arrow-right" />
-            </div>*/}
           </div>
-
-          {/* <input
-            type="submit"
-            value="SUBMIT ANSWER"
-            disabled={this.state.submitDisabled}
-            className="o-buttons o-buttons--big o-buttons--standout"
-            ref={node => { this.submitButton = node; }}
-          />*/}
         </form>
-
-        {/* TODO: Spacer div may be required if using in combination with a chart output */}
-        {/* <div className="spacer" /> */}
       </div>
     );
   }
