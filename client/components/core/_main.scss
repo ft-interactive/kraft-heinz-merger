@@ -127,7 +127,7 @@ $share-button-size: 38px;
   .userinput-container__component.tacked#userinput-input {
     position: fixed;
     width: 100%;
-    height: 120px;
+    height: 130px;
     top: 0;
     left: 0;
     background: #fff1e0;
@@ -139,6 +139,7 @@ $share-button-size: 38px;
     .userinput__component-group {
       width: 33%;
       display: inline-block;
+      vertical-align: top;
       margin-top: 5px;
 
       p {

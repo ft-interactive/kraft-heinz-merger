@@ -67,7 +67,7 @@ class App extends Component {
     window.addEventListener('scroll', () => {
       const containerPosition = document.querySelector('#userinput-container').offsetTop + document.querySelector('#userinput-container').getBoundingClientRect().bottom - document.querySelector('#userinput-container').getBoundingClientRect().top;
 
-      if (window.scrollY > containerPosition - 120) {
+      if (window.scrollY > containerPosition - 130) {
         console.log(window.scrollY, containerPosition, 'tacked');
         document.querySelector('#userinput-input').classList.add('tacked');
       } else {
