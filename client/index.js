@@ -76,6 +76,7 @@ class App extends Component {
       });
     } else {
       if (_.find(this.state.data, { category })) {
+        _.find(this.state.data, { category }).customValues = true;
         switch (label) {
           case 'premium':
             _.find(this.state.data, { category }).premium = value;
@@ -244,6 +245,7 @@ class App extends Component {
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'premium'}
           unit={'%'}
+          customValues={d.customValues}
           onSubmit={this.updateData}
         />
         <Range
@@ -256,6 +258,7 @@ class App extends Component {
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'stock'}
           unit={'%'}
+          customValues={d.customValues}
           onSubmit={this.updateData}
         />
         <Range
@@ -268,6 +271,7 @@ class App extends Component {
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'buffett'}
           unit={'$'}
+          customValues={d.customValues}
           onSubmit={this.updateData}
         />
       </div>);

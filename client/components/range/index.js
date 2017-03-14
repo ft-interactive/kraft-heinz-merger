@@ -100,6 +100,7 @@ class Range extends Component {
               className="range-slider"
             >
               <input
+                className={(this.props.customValues ? 'custom-values' : '')}
                 id={this.props.labelName}
                 type="range"
                 min={this.props.min}
@@ -158,6 +159,7 @@ class Range extends Component {
 
 Range.propTypes = {
   category: React.PropTypes.string,
+  customValues: React.PropTypes.string,
   min: React.PropTypes.number,
   max: React.PropTypes.number,
   increments: React.PropTypes.number,
