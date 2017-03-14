@@ -222,16 +222,13 @@ class App extends Component {
       };
     });
 
-    let individualCompanyHeader;
-    if (this.state.data.filter(d => d.customValues).length > 0) {
-      individualCompanyHeader = (<div id="individual-company-sliders-header">
-        <div>% premium</div>
-        <div>% in stock</div>
-        <div>Buffett/3G equity contribution ($bn)</div>
-      </div>);
-    }
+    const individualCompanyHeader = (<div id="individual-company-sliders-header">
+      <div>% premium</div>
+      <div>% in stock</div>
+      <div>Buffett/3G equity contribution ($bn)</div>
+    </div>);
 
-    const individualCompanySliders = this.state.data.filter(d => d.customValues).map((d) => {
+    const individualCompanySliders = this.state.data.map((d) => {
       return (<div className="company-slider-container">
         <div className="company-slider-container__company-name">
           {d.category}
@@ -344,10 +341,10 @@ class App extends Component {
                   <div>
                     {individualCompanyHeader}
                     {individualCompanySliders}
-                    <Select
+                    {/* <Select
                       data={this.state.data}
                       onChange={this.addCompany}
-                    />
+                    /> */}
                   </div>
                 </div>
                 <a className="o-expander__toggle o--if-js">Options</a>
