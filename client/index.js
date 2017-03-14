@@ -69,6 +69,16 @@ class App extends Component {
     console.log('update heatmap', label, value, category);
 
     if (category === 'default') {
+      // set states for all individual companies that do NOT have custom values
+      this.state.data.map((d) => {
+        if (!d.customValues) {
+          d.premium = (label === 'premium' ? value : this.state.premium);
+          d.buffettContribution = (label === 'buffett' ? value : this.state.buffettContribution);
+          d.stockConsideration = (label === 'stock' ? value : this.state.stockConsideration);
+        }
+      });
+
+      // set default states
       this.setState({
         premium: (label === 'premium' ? value : this.state.premium),
         buffettContribution: (label === 'buffett' ? value : this.state.buffettContribution),
