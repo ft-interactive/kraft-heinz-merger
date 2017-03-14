@@ -27,8 +27,16 @@ class Range extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const inputValue = parseInt(nextProps.value, 10);
+    const num = isNaN(inputValue) ? 0 : inputValue; // Ensure input value is a number
+    const incrementWidth = this.state.incrementWidth;
+    const diffFactor = this.state.diffFactor;
+    // const center = this.state.center;
+    const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor);
+
     this.setState({
-      value: nextProps.value,
+      value: inputValue,
+      rangeOverlayPosition,
     });
   }
 
