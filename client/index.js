@@ -65,13 +65,17 @@ class App extends Component {
     expander.init(null, {});
 
     window.addEventListener('scroll', () => {
-      const containerPosition = document.querySelector('#userinput-container').offsetTop + document.querySelector('#userinput-container').getBoundingClientRect().bottom - document.querySelector('#userinput-container').getBoundingClientRect().top;
+      const containerHeight = document.querySelector('#userinput-container').getBoundingClientRect().bottom - document.querySelector('#userinput-container').getBoundingClientRect().top;
+      const containerPosition = document.querySelector('#userinput-container').offsetTop + containerHeight;
+
 
       if (window.scrollY > containerPosition - 130) {
-        console.log(window.scrollY, containerPosition, 'tacked');
         document.querySelector('#userinput-input').classList.add('tacked');
+
+        document.querySelector('#userinput-input__container').style.height = containerHeight;
       } else {
         document.querySelector('#userinput-input').classList.remove('tacked');
+        document.querySelector('#userinput-input__container').style.height = 'auto';
       }
     });
   }
@@ -317,57 +321,59 @@ class App extends Component {
 
                 <p>Using the sliding bars below, choose:</p>
               </div>
-              <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
-                <div className="userinput__component-group">
-                  <p>1. The <b>premium (%)</b> Kraft Heinz will pay to target shareholders</p>
-                  <Range
-                    category={'default'}
-                    min={20}
-                    max={40}
-                    step={5}
-                    increments={6}
-                    overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
-                    thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                    label={'% premium'}
-                    labelName={'premium'}
-                    unit={'%'}
-                    value={this.state.premium}
-                    onSubmit={this.updateData}
-                  />
-                </div>
-                <div className="userinput__component-group">
-                  <p>2. The proportion of Kraft Heinz <b>stock</b> that would be issued to the target</p>
-                  <Range
-                    category={'default'}
-                    min={0}
-                    max={25}
-                    step={5}
-                    increments={7}
-                    overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
-                    thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                    label={'% in stock'}
-                    labelName={'stock'}
-                    unit={'%'}
-                    value={this.state.stockConsideration}
-                    onSubmit={this.updateData}
-                  />
-                </div>
-                <div className="userinput__component-group">
-                  <p>3. How much equity will need to be issued to <b>Buffett and 3G Capital ($bn)</b></p>
-                  <Range
-                    category={'default'}
-                    min={5}
-                    max={15}
-                    step={1}
-                    increments={11}
-                    overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
-                    thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                    label={'Buffett/3G equity contribution ($bn)'}
-                    labelName={'buffett'}
-                    unit={'$'}
-                    value={this.state.buffettContribution}
-                    onSubmit={this.updateData}
-                  />
+              <div id="userinput-input__container" data-o-grid-colspan="12 M6">
+                <div className="userinput-container__component" id="userinput-input">
+                  <div className="userinput__component-group">
+                    <p>1. The <b>premium (%)</b> Kraft Heinz will pay to target shareholders</p>
+                    <Range
+                      category={'default'}
+                      min={20}
+                      max={40}
+                      step={5}
+                      increments={6}
+                      overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
+                      thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+                      label={'% premium'}
+                      labelName={'premium'}
+                      unit={'%'}
+                      value={this.state.premium}
+                      onSubmit={this.updateData}
+                    />
+                  </div>
+                  <div className="userinput__component-group">
+                    <p>2. The proportion of Kraft Heinz <b>stock</b> that would be issued to the target</p>
+                    <Range
+                      category={'default'}
+                      min={0}
+                      max={25}
+                      step={5}
+                      increments={7}
+                      overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
+                      thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+                      label={'% in stock'}
+                      labelName={'stock'}
+                      unit={'%'}
+                      value={this.state.stockConsideration}
+                      onSubmit={this.updateData}
+                    />
+                  </div>
+                  <div className="userinput__component-group">
+                    <p>3. How much equity will need to be issued to <b>Buffett and 3G Capital ($bn)</b></p>
+                    <Range
+                      category={'default'}
+                      min={5}
+                      max={15}
+                      step={1}
+                      increments={11}
+                      overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
+                      thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
+                      label={'Buffett/3G equity contribution ($bn)'}
+                      labelName={'buffett'}
+                      unit={'$'}
+                      value={this.state.buffettContribution}
+                      onSubmit={this.updateData}
+                    />
+                  </div>
                 </div>
               </div>
               <div className="userinput-container__component" id="userinput-output" data-o-grid-colspan="12 M6">
