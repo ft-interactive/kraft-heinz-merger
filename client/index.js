@@ -319,7 +319,7 @@ class App extends Component {
                   unit={'%'}
                   onSubmit={this.updateData}
                 />
-                <p>3. How much equity will need to be issued to <b>Buffett and 3G Capital</b></p>
+                <p>3. How much equity will need to be issued to <b>Buffett and 3G Capital ($bn)</b></p>
                 <Range
                   category={'default'}
                   min={5}
