@@ -47,9 +47,9 @@ class App extends Component {
         buffett3GOwnership,
         raw: d,
         customValues: false,
-        premium: null,
-        stockConsideration: null,
-        buffettContribution: null,
+        premium: this.state.premium,
+        stockConsideration: this.state.stockConsideration,
+        buffettContribution: this.state.buffettContribution,
       };
     }).sort((a, b) => b.enterpriseValue - a.enterpriseValue);
 
@@ -115,9 +115,9 @@ class App extends Component {
   removeCompany(company) {
     if (company) {
       _.find(this.state.data, { category: company }).customValues = false;
-      _.find(this.state.data, { category: company }).premium = null;
-      _.find(this.state.data, { category: company }).buffettContribution = null;
-      _.find(this.state.data, { category: company }).stockConsideration = null;
+      _.find(this.state.data, { category: company }).premium = this.state.premium;
+      _.find(this.state.data, { category: company }).buffettContribution = this.state.buffettContribution;
+      _.find(this.state.data, { category: company }).stockConsideration = this.state.stockConsideration;
     }
 
     const data = this.state.data;
@@ -246,6 +246,7 @@ class App extends Component {
           labelName={'premium'}
           unit={'%'}
           customValues={d.customValues}
+          value={d.premium}
           onSubmit={this.updateData}
         />
         <Range
@@ -259,6 +260,7 @@ class App extends Component {
           labelName={'stock'}
           unit={'%'}
           customValues={d.customValues}
+          value={d.stockConsideration}
           onSubmit={this.updateData}
         />
         <Range
@@ -272,6 +274,7 @@ class App extends Component {
           labelName={'buffett'}
           unit={'$'}
           customValues={d.customValues}
+          value={d.buffettContribution}
           onSubmit={this.updateData}
         />
       </div>);
@@ -305,6 +308,7 @@ class App extends Component {
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                   labelName={'premium'}
                   unit={'%'}
+                  value={this.state.premium}
                   onSubmit={this.updateData}
                 />
                 <p>2. The proportion of Kraft Heinz <b>stock</b> that would be issued to the target</p>
@@ -318,6 +322,7 @@ class App extends Component {
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                   labelName={'stock'}
                   unit={'%'}
+                  value={this.state.stockConsideration}
                   onSubmit={this.updateData}
                 />
                 <p>3. How much equity will need to be issued to <b>Buffett and 3G Capital ($bn)</b></p>
@@ -331,6 +336,7 @@ class App extends Component {
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                   labelName={'buffett'}
                   unit={'$'}
+                  value={this.state.buffettContribution}
                   onSubmit={this.updateData}
                 />
               </div>

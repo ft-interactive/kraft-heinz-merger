@@ -6,7 +6,7 @@ class Range extends Component {
     super(props);
 
     this.state = {
-      value: this.props.min,
+      value: this.props.value,
       rangeDisabled: false,
       submitDisabled: false,
       incrementWidth: null,
@@ -24,6 +24,12 @@ class Range extends Component {
     this.handleResize();
 
     window.addEventListener('resize', _.throttle(this.handleResize, 500));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      value: nextProps.value,
+    });
   }
 
   handleChange(label, value, category) {
@@ -162,6 +168,7 @@ Range.propTypes = {
   customValues: React.PropTypes.string,
   min: React.PropTypes.number,
   max: React.PropTypes.number,
+  value: React.PropTypes.number,
   increments: React.PropTypes.number,
   step: React.PropTypes.number,
   unit: React.PropTypes.string,
