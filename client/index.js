@@ -281,7 +281,7 @@ class App extends Component {
         <Card
           data={enterpriseValueData}
           headline={'Companies in the sights'}
-          subhead={'$bn'}
+          subhead={'Enterprise value ($bn)'}
         />
         <div className="graphic" id="userinput-wrapper">
           <div id="userinput-container" className="o-grid-container">
@@ -372,7 +372,7 @@ class App extends Component {
               data={epsAccretionData}
               text={'The goal in M&A is earnings per share growth. Kraft Heinz will acquire the target company\'s net income but will also owe interest on the new debt.  As new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G, this will cause further dilution. This calculation makes it obvious why Kraft Heinz ambitiously pursued Unilever: because of the sheer size of its earnings base. Another important factor is the relative valuation of the target companies. Colgate-Palmolive is a $70bn company that trades at 23 times earnings even without any premium, making it likely to dilute Kraft Heinz earnings on acquisition.'}
               headline={'1. Impact on Kraft-Heinz 2018 earnings'}
-              subhead={'Values based on your inputs above'}
+              subhead={'Change to 2018 earnings (%), values based on your inputs above'}
             />
           </div>
 
@@ -382,7 +382,7 @@ class App extends Component {
               yHighlight={6}
               text={'Typically net debt/EBITDA of more than 6 times is considered high. Kraft Heinz\'s standalone net debt to EBITDA ratio is 3.4 times and it has the lowest investment grade credit rating, making interest costs higher. Acquiring Unilever would likely have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
               headline={'2. Kraft Heinz leverage'}
-              subhead={'Values based on your inputs above'}
+              subhead={'Net debt/EBITDA, values based on your inputs above'}
             />
           </div>
           <div className="output-container">
@@ -390,7 +390,7 @@ class App extends Component {
               data={buffett3GOwnershipData}
               text={'Buffett/3G presently own just over half of Kraft Heinz. In calculating any given Buffett/3G contribution to an acquisition, the smaller the target company, the greater proportion of Kraft Heinz these investors will own.'}
               headline={'3. Buffett/3G creeping ownership of Kraft Heinz'}
-              subhead={'percentage point difference from current ownership, values based on your inputs above'}
+              subhead={'Percentage point difference from current ownership, values based on your inputs above'}
             />
           </div>
         </div>
