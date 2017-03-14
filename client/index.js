@@ -291,16 +291,9 @@ class App extends Component {
                 <p>Kraft Heinz must pay enough to convince a target company to sell but also  guard against using too much debt to fund the purchase. Any deal will also require a swag of new equity, with shares to be issued to the Kraft Heinz 51 per cent backers, 3G and Warren Buffett, and even to the target shareholders. </p>
 
                 <p>Using the sliding bars below, choose:</p>
-
-                <ol>
-                  <li>The premium Kraft Heinz will pay to target shareholders</li>
-                  <li>The proportion of Kraft Heinz stock that would be issued to the target</li>
-                  <li>How much equity will need to be issued to Buffett and 3G Capital</li>
-                </ol>
-
-                <p>Watch the changes in the table recording the impact on key measures.</p>
               </div>
               <div className="userinput-container__component" id="userinput-input" data-o-grid-colspan="12 M6">
+                <p>1. The <b>premium (%)</b> Kraft Heinz will pay to target shareholders</p>
                 <Range
                   category={'default'}
                   min={20}
@@ -309,11 +302,11 @@ class App extends Component {
                   increments={6}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                  label={'% premium'}
                   labelName={'premium'}
                   unit={'%'}
                   onSubmit={this.updateData}
                 />
+                <p>2. The proportion of Kraft Heinz <b>stock</b> that would be issued to the target</p>
                 <Range
                   category={'default'}
                   min={0}
@@ -322,11 +315,11 @@ class App extends Component {
                   increments={7}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                  label={'% in stock'}
                   labelName={'stock'}
                   unit={'%'}
                   onSubmit={this.updateData}
                 />
+                <p>3. How much equity will need to be issued to <b>Buffett and 3G Capital</b></p>
                 <Range
                   category={'default'}
                   min={5}
@@ -335,13 +328,13 @@ class App extends Component {
                   increments={11}
                   overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                   thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
-                  label={'Buffett/3G equity contribution ($bn)'}
                   labelName={'buffett'}
                   unit={'$'}
                   onSubmit={this.updateData}
                 />
               </div>
               <div className="userinput-container__component" id="userinput-output" data-o-grid-colspan="12 M6">
+                <p>Watch the changes in the table recording the impact on key measures.</p>
                 <Heatmap data={this.state.data} />
               </div>
             </div>
