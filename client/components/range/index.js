@@ -101,7 +101,6 @@ class Range extends Component {
             >
               <input
                 id={this.props.labelName}
-                category={this.props.category}
                 type="range"
                 min={this.props.min}
                 max={this.props.max}
