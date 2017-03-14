@@ -139,11 +139,12 @@ $share-button-size: 38px;
 
 #individual-company-sliders-header {
   width: 100%;
-  margin-left: 25%;
+  margin-left: 140px;
   display: inline-block;
 
   div {
     width: 25%;
+    width: calc(33% - 47px);
     display: inline-block;
     vertical-align: top;
     text-align: center;
@@ -155,7 +156,7 @@ $share-button-size: 38px;
 
 .company-slider-container {
   .company-slider-container__company-name {
-    width: 25%;
+    width: 140px;
     font-weight: 600;
     display: inline-block;
     margin-top: 24px;
@@ -163,6 +164,7 @@ $share-button-size: 38px;
 
   .input {
     width: 25%;
+    width: calc(33% - 47px);
     display: inline-block;
     vertical-align: top;
   }
