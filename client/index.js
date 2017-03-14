@@ -246,7 +246,7 @@ class App extends Component {
           labelName={'premium'}
           unit={'%'}
           customValues={d.customValues}
-          value={d.premium}
+          value={(d.customValues ? d.premium : this.state.premium)}
           onSubmit={this.updateData}
         />
         <Range
@@ -260,7 +260,7 @@ class App extends Component {
           labelName={'stock'}
           unit={'%'}
           customValues={d.customValues}
-          value={d.stockConsideration}
+          value={(d.customValues ? d.stockConsideration : this.state.stockConsideration)}
           onSubmit={this.updateData}
         />
         <Range
@@ -274,7 +274,7 @@ class App extends Component {
           labelName={'buffett'}
           unit={'$'}
           customValues={d.customValues}
-          value={d.buffettContribution}
+          value={(d.customValues ? d.buffettContribution : this.state.buffettContribution)}
           onSubmit={this.updateData}
         />
       </div>);
