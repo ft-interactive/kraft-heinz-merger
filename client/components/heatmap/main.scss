@@ -1,19 +1,41 @@
-#heatmap table {
-  font-feature-settings: "tnum";
+#heatmap {
+  #heatmap-key {
+    width: 100%;
+    margin-bottom: 1em;
+    color: #74736c;
+    text-align: center;
 
-  tr {
-    height: 2em;
-    font-weight: 600;
+    #heatmap-gradient {
+      width: 30%;
+      height: 1em;
+      margin: -3px 5px;
+      display: inline-block;
+      border: 1px solid #a7a59b;
+      background: #a5526a; /* Old browsers */
+      background: -moz-linear-gradient(left, #a5526a 0%, #fff1e0 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(left, #a5526a 0%,#fff1e0 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to right, #a5526a 0%,#fff1e0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a5526a', endColorstr='#fff1e0',GradientType=1 ); /* IE6-9 */
+    }
   }
 
-  td {
-    text-align: center;
-    width: 25%;
+  table {
+    font-feature-settings: "tnum";
 
-    &:nth-child(1) {
-      text-align: right;
-      padding-right: 5px;
-      color: #6b6e68;
+    tr {
+      height: 2em;
+      font-weight: 600;
+    }
+
+    td {
+      text-align: center;
+      width: 25%;
+
+      &:nth-child(1) {
+        text-align: right;
+        padding-right: 5px;
+        color: #6b6e68;
+      }
     }
   }
 }
