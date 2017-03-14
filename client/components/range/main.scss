@@ -228,10 +228,10 @@ div.input {
       -moz-transition: opacity linear 500ms;
       transition: opacity linear 500ms;
       div.range-container {
-        width: 80%;
+        width: 90%;
         div.range-labels {
           box-sizing: border-box;
-          width: 5%;
+          width: 15%;
           height: 19px;
           font-size: 16px;
           text-align: center;
@@ -253,7 +253,7 @@ div.input {
         div.range-slider {
           position: relative;
           display: inline-block;
-          width: 88%;
+          width: 68%;
           input[type=range]:not(.custom-values) {
             -webkit-appearance: none;
             width: 100%;
