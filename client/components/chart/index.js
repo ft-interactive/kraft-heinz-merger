@@ -190,7 +190,7 @@ class ColumnChart extends Component {
         .text(d => d.value)
         .attr('class', 'column-chart__label')
         .attr('x', xScale.bandwidth() / 4)
-        .attr('y', d => yScale(d.value) - 8)
+        .attr('y', d => yScale(d.value) - 7)
         .attr('text-anchor', 'middle');
 
       if (this.props.yHighlight) {
@@ -256,7 +256,7 @@ class ColumnChart extends Component {
       bar.select('text.column-chart__label')
         .text(d => d.value)
         .attr('x', xScale.bandwidth() / 4)
-        .attr('y', d => yScale(d.value) - 8)
+        .attr('y', d => yScale(d.value) - 7)
         .attr('text-anchor', 'middle');
 
       bar.select('rect')
