@@ -231,12 +231,18 @@ class ColumnChart extends Component {
           .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
           .call(xAxis);
 
+      // @TODO Figure out why Mondelez doubles itself. Use hack for now.
       svg.selectAll('.x .tick text')
-        .attr('y', (d, i) => {
-          if (i % 2 === 1) {
+        .attr('y', (d) => {
+          const secondRowNames = ['Mondelez', 'Kimberly-Clark', 'Kim.-Clark', 'Kellogg'];
+          if (secondRowNames.indexOf(d) > -1) {
             return 30;
           }
           return 9;
+          // if (i % 2 === 1) {
+          //   return 30;
+          // }
+          // return 9;
         });
 
       const chartContainer = svg.select('g.chart-container')
