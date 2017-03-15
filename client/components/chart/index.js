@@ -41,31 +41,6 @@ class ColumnChart extends Component {
   }
 
   drawChart(inputData = this.props.data) {
-    function wrap(text, width) {
-      text.each(function() {
-        var text = d3.select(this),
-            words = text.text().split(/\s+/).reverse(),
-            word,
-            line = [],
-            lineNumber = 0,
-            lineHeight = 1.1, // ems
-            y = text.attr("y"),
-            dy = parseFloat(text.attr("dy")),
-            tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-
-        while (word = words.pop()) {
-          line.push(word);
-          tspan.text(line.join(" "));
-          if (tspan.node().getComputedTextLength() > width) {
-            line.pop();
-            tspan.text(line.join(" "));
-            line = [word];
-            tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-          }
-        }
-      });
-    }
-
     const data = inputData;
 
     const margin = { // Mike Bostock's margin convention
@@ -78,12 +53,7 @@ class ColumnChart extends Component {
     const width = this.node.offsetWidth - margin.left - margin.right;
     const calculatedHeight = Math.max(150, (this.node.offsetWidth / 3.2) + 14);
     const height = ((calculatedHeight - margin.top) - margin.bottom) + 14;
-    // @TODO Hide smallest two companies on mobile, but don't screw up resize
-    // const breakpoint = 400;
-    //
-    // if (width < breakpoint) {
-    //   data = data.slice(0, -2);
-    // }
+    const breakpoint = 400;
 
     const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => +d.value)) / 5)) - 5, 0);
     let yDomainMax = (5 * Math.ceil(d3.max(data.map(d => +d.value)) / 5)) + 5;
@@ -92,8 +62,13 @@ class ColumnChart extends Component {
       yDomainMax = Math.max(this.props.yHighlight, yDomainMax);
     }
 
+    let companyNames = data.map(d => d.category);
+    if (width < breakpoint) {
+      companyNames = data.map(d => d.mobileCategory);
+    }
+
     const xScale = d3.scaleBand()
-        .domain(data.map(d => d.category))
+        .domain(companyNames)
         .range([0, width])
         .paddingInner([0.1])
         .paddingOuter([0.3]);
@@ -138,8 +113,6 @@ class ColumnChart extends Component {
           .attr('class', 'x axis')
           .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
           .call(xAxis);
-        // .selectAll('.tick text')
-        //   .call(wrap, xScale.bandwidth());
 
       svg.selectAll('.x .tick text')
         .attr('y', (d, i) => {
@@ -165,7 +138,12 @@ class ColumnChart extends Component {
         .data(data)
       .enter().append('g')
         .attr('class', 'bar')
-        .attr('transform', d => `translate(${xScale(d.category) + (xScale.bandwidth() / 4)}, 0)`);
+        .attr('transform', (d) => {
+          if (width < breakpoint) {
+            return `translate(${xScale(d.mobileCategory) + (xScale.bandwidth() / 4)}, 0)`;
+          }
+          return `translate(${xScale(d.category) + (xScale.bandwidth() / 4)}, 0)`;
+        });
 
       const rect = bar.append('rect')
           .attr('x', 1)
@@ -196,7 +174,7 @@ class ColumnChart extends Component {
         .attr('y', d => yScale(d.value) - 20)
         .attr('width', (d) => {
           if (d.value > 0) {
-            return xScale.bandwidth() / 2
+            return xScale.bandwidth() / 2;
           }
           return 0;
         })
@@ -252,8 +230,6 @@ class ColumnChart extends Component {
           .attr('class', 'x axis')
           .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
           .call(xAxis);
-        // .selectAll('.tick text')
-        //   .call(wrap, xScale.bandwidth());
 
       svg.selectAll('.x .tick text')
         .attr('y', (d, i) => {
@@ -275,12 +251,22 @@ class ColumnChart extends Component {
 
       const bar = chartContainer.selectAll('.bar')
         .data(data)
-        .attr('transform', d => `translate(${xScale(d.category) + (xScale.bandwidth() / 4)}, 0)`);
+        .attr('transform', (d) => {
+          if (width < breakpoint) {
+            return `translate(${xScale(d.mobileCategory) + (xScale.bandwidth() / 4)}, 0)`;
+          }
+          return `translate(${xScale(d.category) + (xScale.bandwidth() / 4)}, 0)`;
+        });
 
       bar.select('rect.textBackground')
         .attr('x', 1)
         .attr('y', d => yScale(d.value) - 20)
-        .attr('width', xScale.bandwidth() / 2);
+        .attr('width', (d) => {
+          if (d.value > 0) {
+            return xScale.bandwidth() / 2;
+          }
+          return 0;
+        });
 
       bar.select('text.column-chart__label')
         .text(d => d.value)
