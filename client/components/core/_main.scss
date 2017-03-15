@@ -241,16 +241,16 @@ $share-button-size: 38px;
 }
 
 @include oGridRespondTo($until: S) {
-  div.range-container {
+  .tacked div.range-container {
     width: 60%;
     margin-left: 20%;
   }
 
-  div.range-labels {
+  .tacked div.range-labels {
     font-size: 14px !important;
   }
 
-  div.sub-labels-c {
+  .tacked div.sub-labels-c {
     font-size: 14px !important;
   }
 }
