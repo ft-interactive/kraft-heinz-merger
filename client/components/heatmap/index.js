@@ -39,13 +39,6 @@ class Heatmap extends Component {
       .domain(debtEBITDAMinMax)
       .range(['#FFF1e0', '#A5526A']);
 
-    const buffett3GOwnershipColorScale = (value) => {
-      if (+value < 50) {
-        return 'rgb(239, 213, 203)';
-      }
-      return 'rgb(183, 113, 129)';
-    };
-
     const heatmapData = this.props.data.map((d) => {
       const epsAccretionStyle = {
         background: epsAccretionColorScale(+d.epsAccretion),
@@ -53,10 +46,6 @@ class Heatmap extends Component {
 
       const debtEBITDAStyle = {
         background: debtEBITDAColorScale(+d.debtEBITDA),
-      };
-
-      const buffett3GOwnershipStyle = {
-        background: buffett3GOwnershipColorScale(+d.buffett3GOwnership),
       };
 
       const rowKey = `${d.raw.displayName}-row`;
@@ -68,7 +57,7 @@ class Heatmap extends Component {
         <td key={d.raw.displayName}>{d.raw.displayName}</td>
         <td key={cellEpsAccretion} style={epsAccretionStyle}>{d.epsAccretion}</td>
         <td key={cellDebtEBITDA} style={debtEBITDAStyle}>{d.debtEBITDA}x</td>
-        <td key={cellBuffett3GOwnership} style={buffett3GOwnershipStyle}>{d.buffett3GOwnership}</td>
+        <td key={cellBuffett3GOwnership}>{d.buffett3GOwnership}</td>
       </tr>);
     });
 
@@ -90,6 +79,12 @@ class Heatmap extends Component {
           </thead>
           <tbody>
             {heatmapData}
+            <tr key={'Kraft standalone'}>
+              <td key={'Kraft standalone name'}>Kraft Heinz (current)</td>
+              <td key={'Kraft standalone earnings impact'}>—</td>
+              <td key={'Kraft standalone debt'}>3.4x</td>
+              <td key={'Kraft standalone buffettownership'}>50.1</td>
+            </tr>
           </tbody>
         </table>
       </div>

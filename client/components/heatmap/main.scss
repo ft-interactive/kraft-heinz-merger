@@ -21,6 +21,7 @@
 
   table {
     font-feature-settings: "tnum";
+    border-collapse: collapse;
 
     tr {
       height: 2em;
@@ -35,6 +36,14 @@
         text-align: right;
         padding-right: 5px;
         color: #6b6e68;
+      }
+    }
+
+    tbody tr:last-of-type {
+      border-top: 1px solid #74736c;
+
+      td {
+        padding-top: 10px;
       }
     }
   }
