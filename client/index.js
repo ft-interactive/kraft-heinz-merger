@@ -67,14 +67,17 @@ class App extends Component {
     window.addEventListener('scroll', () => {
       const containerHeight = document.querySelector('#userinput-container').getBoundingClientRect().bottom - document.querySelector('#userinput-container').getBoundingClientRect().top;
       const containerPosition = document.querySelector('#userinput-container').offsetTop + containerHeight;
-
+      const tackChangeEvent = new CustomEvent('tackchange');
 
       if (window.scrollY > containerPosition - 130) {
         document.querySelector('#userinput-input').classList.add('tacked');
+        document.dispatchEvent(tackChangeEvent);
 
         document.querySelector('#userinput-input__container').style.height = containerHeight;
       } else {
         document.querySelector('#userinput-input').classList.remove('tacked');
+        document.dispatchEvent(tackChangeEvent);
+
         document.querySelector('#userinput-input__container').style.height = 'auto';
       }
     });
@@ -265,7 +268,6 @@ class App extends Component {
           min={20}
           max={40}
           step={5}
-          increments={6}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'premium'}
@@ -279,7 +281,6 @@ class App extends Component {
           min={0}
           max={25}
           step={5}
-          increments={7}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'stock'}
@@ -293,7 +294,6 @@ class App extends Component {
           min={5}
           max={15}
           step={1}
-          increments={11}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'buffett'}
@@ -330,7 +330,6 @@ class App extends Component {
                       min={20}
                       max={40}
                       step={5}
-                      increments={6}
                       overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                       thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                       label={'% premium'}
@@ -347,7 +346,6 @@ class App extends Component {
                       min={0}
                       max={25}
                       step={5}
-                      increments={7}
                       overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                       thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                       label={'% in stock'}
@@ -364,7 +362,6 @@ class App extends Component {
                       min={5}
                       max={15}
                       step={1}
-                      increments={11}
                       overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                       thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                       label={'Buffett/3G equity contribution ($bn)'}

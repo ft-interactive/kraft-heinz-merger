@@ -24,15 +24,18 @@ class Range extends Component {
     this.handleResize();
 
     window.addEventListener('resize', _.throttle(this.handleResize, 500));
+    document.addEventListener('tackchange', this.handleResize);
   }
 
   componentWillReceiveProps(nextProps) {
     const inputValue = parseInt(nextProps.value, 10);
     const num = isNaN(inputValue) ? 0 : inputValue; // Ensure input value is a number
-    const incrementWidth = this.state.incrementWidth;
+    const width = this.rangeInput.offsetWidth - 40;
+    const increments = (this.props.max - this.props.min) / this.props.step;
+    const incrementWidth = width / increments;
     const diffFactor = this.state.diffFactor;
     // const center = this.state.center;
-    const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor);
+    const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor / (this.props.step));
 
     this.setState({
       value: inputValue,
@@ -43,10 +46,12 @@ class Range extends Component {
   handleChange(label, value, category) {
     const inputValue = parseInt(value, 10);
     const num = isNaN(inputValue) ? 0 : inputValue; // Ensure input value is a number
-    const incrementWidth = this.state.incrementWidth;
+    const width = this.rangeInput.offsetWidth - 40;
+    const increments = (this.props.max - this.props.min) / this.props.step;
+    const incrementWidth = width / increments;
     const diffFactor = this.state.diffFactor;
     // const center = this.state.center;
-    const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor);
+    const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor / this.props.step);
 
     this.setState({
       value: num,
@@ -60,11 +65,12 @@ class Range extends Component {
   handleResize() {
     const num = this.state.value;
     const width = this.rangeInput.offsetWidth - 40;
-    const incrementWidth = width / (this.props.increments - 1);
+    const increments = (this.props.max - this.props.min) / this.props.step;
+    const incrementWidth = width / increments;
     const diffFactor = (this.props.overlayWidth - this.props.thumbWidth) /
-      (this.props.increments - 1);
+      (increments);
     const center = (width / 2);
-    const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor);
+    const rangeOverlayPosition = 0 + ((Math.abs(num - this.props.min) / this.props.step) * incrementWidth) + (Math.abs(num - this.props.min) * diffFactor / this.props.step);
 
     this.setState({
       width,
@@ -114,7 +120,7 @@ class Range extends Component {
               />
 
               <output
-                style={{ left: `${this.state.rangeOverlayPosition}px` }}
+                style={{ left: `${this.state.rangeOverlayPosition - 5}px` }}
                 ref={(node) => { this.output = node; }}
               >
                 {`${this.state.value}${this.props.unit}`}
@@ -150,7 +156,6 @@ Range.propTypes = {
   min: React.PropTypes.number,
   max: React.PropTypes.number,
   value: React.PropTypes.number,
-  increments: React.PropTypes.number,
   step: React.PropTypes.number,
   unit: React.PropTypes.string,
   label: React.PropTypes.string,
