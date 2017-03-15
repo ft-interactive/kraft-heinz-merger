@@ -6,7 +6,6 @@ import _ from 'lodash';
 import Card from './components/card';
 import Range from './components/range';
 import Heatmap from './components/heatmap';
-import Select from './components/select';
 
 function roundToTenth(num) {
   return (Math.round(num * 10) / 10).toFixed(1);
@@ -63,10 +62,13 @@ class App extends Component {
     this.updateHeatmap = this.updateHeatmap.bind(this);
     this.addCompany = this.addCompany.bind(this);
     this.removeCompany = this.removeCompany.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
   componentDidMount() {
     expander.init(null, {});
+
+    this.handleResize();
 
     window.addEventListener('scroll', () => {
       const containerHeight = document.querySelector('#userinput-container').getBoundingClientRect().bottom - document.querySelector('#userinput-container').getBoundingClientRect().top;
@@ -76,15 +78,18 @@ class App extends Component {
       if (window.scrollY > containerPosition - 130) {
         document.querySelector('#userinput-input').classList.add('tacked');
         document.dispatchEvent(tackChangeEvent);
-
-        document.querySelector('#userinput-input__container').style.height = containerHeight;
       } else {
         document.querySelector('#userinput-input').classList.remove('tacked');
         document.dispatchEvent(tackChangeEvent);
-
-        document.querySelector('#userinput-input__container').style.height = 'auto';
       }
     });
+
+    window.addEventListener('resize', this.handleResize, 500);
+  }
+
+  handleResize() {
+    const containerHeight = document.querySelector('#userinput-input__container').getBoundingClientRect().bottom - document.querySelector('#userinput-input__container').getBoundingClientRect().top;
+    document.querySelector('#userinput-input__container').style.height = `${containerHeight}px`;
   }
 
   updateData(label, value, category) {
