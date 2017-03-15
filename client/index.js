@@ -266,7 +266,7 @@ class App extends Component {
     </div>);
 
     const individualCompanySliders = this.state.data.map((d) => {
-      return (<div className="company-slider-container">
+      return (<div className="company-slider-container" key={`${d.category}-company-slider-container`}>
         <div className="company-slider-container__company-name">
           {d.category}
           <button className="o-buttons o-buttons--small o-buttons--uncolored" onClick={() => this.removeCompany(d.category)}>Use default values</button>
@@ -394,10 +394,6 @@ class App extends Component {
                   <div>
                     {individualCompanyHeader}
                     {individualCompanySliders}
-                    {/* <Select
-                      data={this.state.data}
-                      onChange={this.addCompany}
-                    /> */}
                   </div>
                 </div>
                 <a className="o-expander__toggle o--if-js">Options</a>
