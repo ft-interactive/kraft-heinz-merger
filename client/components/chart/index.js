@@ -190,6 +190,18 @@ class ColumnChart extends Component {
           return yScale(0) - yScale(d.value || 0);
         });
 
+      bar.append('rect')
+        .attr('class', 'textBackground')
+        .attr('x', 1)
+        .attr('y', d => yScale(d.value) - 20)
+        .attr('width', (d) => {
+          if (d.value > 0) {
+            return xScale.bandwidth() / 2
+          }
+          return 0;
+        })
+        .attr('height', 20);
+
       bar.append('text')
         .text(d => d.value)
         .attr('class', 'column-chart__label')
@@ -265,6 +277,10 @@ class ColumnChart extends Component {
         .data(data)
         .attr('transform', d => `translate(${xScale(d.category) + (xScale.bandwidth() / 4)}, 0)`);
 
+      bar.select('rect.textBackground')
+        .attr('x', 1)
+        .attr('y', d => yScale(d.value) - 20)
+        .attr('width', xScale.bandwidth() / 2);
 
       bar.select('text.column-chart__label')
         .text(d => d.value)
