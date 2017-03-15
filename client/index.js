@@ -431,7 +431,7 @@ class App extends Component {
           <div className="output-container">
             <Card
               data={buffett3GOwnershipData}
-              text={'Buffett/3G presently own 50.1 per cent of Kraft Heinz. In calculating any given Buffett/3G contribution to an acquisition, the smaller the target company, the greater proportion of Kraft Heinz these two powerful investors will own.'}
+              text={'Buffett/3G presently own 50.1 per cent of Kraft Heinz. In calculating any given contribution to an acquisition, the smaller the target company, the greater proportion of Kraft Heinz these two powerful investors will own.'}
               headline={'3. Buffett/3G creeping ownership of Kraft Heinz'}
               subhead={'Percentage point difference from current ownership, values based on your inputs above'}
             />

@@ -11,10 +11,10 @@ export default () => ({ // eslint-disable-line
   //       new Date('2016-05-17T17:11:22Z')
   publishedDate: new Date(),
 
-  headline: 'The Kraft Heinz merger model: the next target',
+  headline: 'The merger model: the next Kraft Heinz target',
 
   // summary === standfirst (Summary is what the content API calls it)
-  summary: 'Make your predictions about the next prey of the 3G/Buffett-backed group',
+  summary: 'Make your predictions about the next prey for the food giant',
 
   topic: {
     name: 'Mergers & Acquisitions',
