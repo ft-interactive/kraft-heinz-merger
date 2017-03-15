@@ -139,9 +139,14 @@ class Range extends Component {
   }
 }
 
+Range.defaultProps = {
+  category: 'default',
+  customValues: false,
+};
+
 Range.propTypes = {
   category: React.PropTypes.string,
-  customValues: React.PropTypes.string,
+  customValues: React.PropTypes.bool,
   min: React.PropTypes.number,
   max: React.PropTypes.number,
   value: React.PropTypes.number,
