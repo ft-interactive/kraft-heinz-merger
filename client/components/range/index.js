@@ -82,6 +82,13 @@ class Range extends Component {
   }
 
   render() {
+    function valueWithLabel(value, label) {
+      if (label === '$') {
+        return `${label}${value}`;
+      }
+      return `${value}${label}`;
+    }
+
     return (
       <div className="input">
         <link
@@ -100,7 +107,7 @@ class Range extends Component {
         >
           <div className="range-container">
             <div className="range-labels range-labels-min">
-              <span>{this.props.min}{this.props.unit}</span>
+              <span>{valueWithLabel(this.props.min, this.props.unit)}</span>
             </div>
 
             <div
@@ -123,12 +130,12 @@ class Range extends Component {
                 style={{ left: `${this.state.rangeOverlayPosition - 5}px` }}
                 ref={(node) => { this.output = node; }}
               >
-                {`${this.state.value}${this.props.unit}`}
+                {valueWithLabel(this.state.value, this.props.unit)}
               </output>
             </div>
 
             <div className="range-labels range-labels-max">
-              <span>{this.props.max}{this.props.unit}</span>
+              <span>{valueWithLabel(this.props.max, this.props.unit)}</span>
             </div>
           </div>
 
