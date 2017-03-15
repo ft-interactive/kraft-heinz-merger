@@ -275,7 +275,7 @@ class App extends Component {
           category={d.category}
           min={20}
           max={40}
-          step={5}
+          step={1}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'premium'}
@@ -288,7 +288,7 @@ class App extends Component {
           category={d.category}
           min={0}
           max={25}
-          step={5}
+          step={1}
           overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
           thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
           labelName={'stock'}
@@ -339,7 +339,7 @@ class App extends Component {
                       category={'default'}
                       min={20}
                       max={40}
-                      step={5}
+                      step={1}
                       overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                       thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                       label={'% premium'}
@@ -355,7 +355,7 @@ class App extends Component {
                       category={'default'}
                       min={0}
                       max={25}
-                      step={5}
+                      step={1}
                       overlayWidth={40} // Must match the overlay width in ./inputs/range/_main.scss
                       thumbWidth={28} // Must match the WebKit thumb width in ./inputs/range/_main.scss
                       label={'% in stock'}
