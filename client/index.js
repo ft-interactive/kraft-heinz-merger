@@ -388,7 +388,7 @@ class App extends Component {
                 <Heatmap data={this.state.data} />
               </div>
             </div>
-            <div className="o-grid-row">
+            <div className="o-grid-row" id="individual-company-sliders-container">
               <div data-o-component="o-expander" className="o-expander items" data-o-expander-shrink-to="0" data-o-expander-count-selector="div" data-o-expander-expanded-toggle-text="Show fewer options" data-o-expander-collapsed-toggle-text="Click to choose different values for individual companies" data-o-grid-colspan="12" id="more-options">
                 <div className="o-expander__content">
                   <div>

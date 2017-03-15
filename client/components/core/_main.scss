@@ -283,6 +283,12 @@ $share-button-size: 38px;
   }
 }
 
+@include oGridRespondTo($until: M) {
+  #individual-company-sliders-container {
+    display: none;
+  }
+}
+
 @include oGridRespondTo($until: S) {
   .tacked div.range-container {
     width: 60%;
