@@ -69,7 +69,7 @@ class ColumnChart extends Component {
     const data = inputData;
 
     const margin = { // Mike Bostock's margin convention
-      top: 10,
+      top: 20,
       right: 40,
       bottom: 30,
       left: 0,
@@ -86,7 +86,11 @@ class ColumnChart extends Component {
     // }
 
     const yDomainMin = Math.min((5 * Math.ceil(d3.min(data.map(d => +d.value)) / 5)) - 5, 0);
-    const yDomainMax = (5 * Math.ceil(d3.max(data.map(d => +d.value)) / 5)) + 5;
+    let yDomainMax = (5 * Math.ceil(d3.max(data.map(d => +d.value)) / 5)) + 5;
+
+    if (this.props.yHighlight) {
+      yDomainMax = Math.max(this.props.yHighlight, yDomainMax);
+    }
 
     const xScale = d3.scaleBand()
         .domain(data.map(d => d.category))
@@ -202,6 +206,15 @@ class ColumnChart extends Component {
           .attr('y2', yScale(this.props.yHighlight));
       }
 
+      if (this.props.yHighlightLabel) {
+        chartContainer.append('text')
+          .attr('class', 'yHighlightLabel')
+          .text(this.props.yHighlightLabel)
+          .attr('x', width)
+          .attr('y', yScale(this.props.yHighlight) - 5)
+          .attr('text-anchor', 'end');
+      }
+
       this.setState({
         initialDraw: false,
       });
@@ -284,6 +297,12 @@ class ColumnChart extends Component {
           .attr('y1', yScale(this.props.yHighlight))
           .attr('y2', yScale(this.props.yHighlight));
       }
+
+      if (this.props.yHighlightLabel) {
+        chartContainer.select('text.yHighlightLabel')
+          .attr('x', width)
+          .attr('y', yScale(this.props.yHighlight) - 5);
+      }
     }
 
     this.animateFauxDOM(800);
@@ -307,6 +326,7 @@ class ColumnChart extends Component {
 ColumnChart.propTypes = {
   data: React.PropTypes.array,
   yHighlight: React.PropTypes.number,
+  yHighlightLabel: React.PropTypes.string,
 };
 
 export default ColumnChart;

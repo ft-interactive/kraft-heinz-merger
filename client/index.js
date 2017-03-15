@@ -313,6 +313,8 @@ class App extends Component {
       <div>
         <Card
           data={enterpriseValueData}
+          yHighlight={144.9}
+          yHighlightLabel={'Current Kraft Heinz value ($145bn)'}
           headline={'Companies in the sights'}
           subhead={'Enterprise value ($bn)'}
         />
