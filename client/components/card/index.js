@@ -13,7 +13,7 @@ class Card extends Component {
         <h2 className="o-typography-subhead">{this.props.headline}</h2>
         <p>{this.props.text}</p>
         <p className="o-typography-lead--small">{this.props.subhead}</p>
-        <ColumnChart data={this.props.data} yHighlight={this.props.yHighlight} yHighlightLabel={this.props.yHighlightLabel} />
+        <ColumnChart data={this.props.data} yHighlight={this.props.yHighlight} yHighlightLabel={this.props.yHighlightLabel} label={this.props.headline} />
       </div>
     );
   }

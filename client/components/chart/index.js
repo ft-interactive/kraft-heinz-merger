@@ -34,6 +34,20 @@ class ColumnChart extends Component {
 
     // Add window resize event listener
     window.addEventListener('resize', throttle(this.handleResize, 750));
+
+    const visuallyHiddenEls = document.querySelectorAll('.n-util-visually-hidden');
+    Array.from(visuallyHiddenEls).forEach((elements) => {
+      elements.addEventListener('click', () => {
+        const eventLabel = elements.getAttribute('data-label');
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'a11y-skip-to-chart-table',
+          eventAction: 'click',
+          eventLabel,
+          transport: 'beacon',
+        });
+      });
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -307,7 +321,7 @@ class ColumnChart extends Component {
       <div>
         <div className="renderedD3" ref={(node) => { this.node = node; }}>
           {this.state.chart}
-          <a data-trackable="a11y-skip-to-chart-table" className="n-util-visually-hidden" href="#heatmap">Skip to chart values</a>
+          <a data-trackable="a11y-skip-to-chart-table" className="n-util-visually-hidden" href="#heatmap" data-label={this.props.label}>Skip to chart values</a>
         </div>
       </div>
     );
@@ -316,6 +330,7 @@ class ColumnChart extends Component {
 
 ColumnChart.propTypes = {
   data: React.PropTypes.array,
+  label: React.PropTypes.string,
   yHighlight: React.PropTypes.number,
   yHighlightLabel: React.PropTypes.string,
 };
