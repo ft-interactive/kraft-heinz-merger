@@ -6,3 +6,5 @@ rules:
     - extensions:
       - .js
       - .jsx
+globals:
+  Origami: true
