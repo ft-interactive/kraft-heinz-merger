@@ -45,7 +45,7 @@ class ColumnChart extends Component {
 
     const margin = { // Mike Bostock's margin convention
       top: 20,
-      right: 40,
+      right: 20,
       bottom: 30,
       left: 0,
     };
@@ -115,6 +115,10 @@ class ColumnChart extends Component {
           .attr('class', 'x axis')
           .attr('transform', `translate(${margin.left}, ${height + margin.top})`)
           .call(xAxis);
+
+      // remove y-axis except origin and y-highlight values
+      const clear = svg.selectAll('.y .tick').filter(d => !(d === 0 || d === this.props.yHighlight));
+      clear.select('text').remove();
 
       svg.selectAll('.x .tick text')
         .attr('y', (d, i) => {
