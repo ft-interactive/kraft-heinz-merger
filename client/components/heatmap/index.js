@@ -68,7 +68,7 @@ class Heatmap extends Component {
           <span id="heatmap-gradient" />
           <span>Better for Kraft</span>
         </div>
-        <table>
+        <table aria-live="polite">
           <thead>
             <tr>
               <th />
