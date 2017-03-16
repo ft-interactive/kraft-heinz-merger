@@ -65,7 +65,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    Origami.expander.init(null, {});
+    Origami['o-expander'].init(null, {});
 
     this.handleResize();
 
