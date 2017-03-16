@@ -94,6 +94,7 @@ class ColumnChart extends Component {
           .attr('width', width + margin.left + margin.right)
           .attr('height', height + margin.top + margin.bottom + margin.bottom)
           .attr('role', 'graphic')
+          .attr('aria-hidden', 'true')
           .attr('class', 'column-chart');
 
       svg.append('g')
