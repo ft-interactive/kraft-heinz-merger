@@ -63,7 +63,7 @@ class Heatmap extends Component {
 
     return (
       <div id="heatmap">
-        <div id="heatmap-key">
+        <div id="heatmap-key" role="presentation">
           <span>Worse for Kraft</span>
           <span id="heatmap-gradient" />
           <span>Better for Kraft</span>
