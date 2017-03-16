@@ -96,9 +96,9 @@ div.input {
             border-radius: 2px;
             transition: background linear 500ms;
           }
-          &:focus {
-            outline: none;
-          }
+          // &:focus {
+          //   outline: none;
+          // }
           &:disabled {
             opacity: 1;
           }
@@ -318,9 +318,9 @@ div.input {
               border-radius: 2px;
               transition: background linear 500ms;
             }
-            &:focus {
-              outline: none;
-            }
+            // &:focus {
+            //   outline: none;
+            // }
             &:disabled {
               opacity: 1;
             }
