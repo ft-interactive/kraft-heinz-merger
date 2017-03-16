@@ -214,11 +214,9 @@ class ColumnChart extends Component {
         .selectAll('text')
           .style('text-anchor', 'start');
 
-      svg.select('.y text')
-        .attr('class', 'label')
-        .attr('x', width)
-        .attr('y', -4)
-        .style('text-anchor', 'end');
+      // remove y-axis except origin and y-highlight values
+      const clear = svg.selectAll('.y .tick').filter(d => !(d === 0 || d === this.props.yHighlight));
+      clear.select('text').remove();
 
       svg.select('g.x.axis')
           .attr('class', 'x axis')
