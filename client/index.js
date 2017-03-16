@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import * as expander from 'o-expander'; // eslint-disable-line
 import _ from 'lodash';
 
 import Card from './components/card';
@@ -66,7 +65,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    expander.init(null, {});
+    Origami.expander.init(null, {});
 
     this.handleResize();
 
