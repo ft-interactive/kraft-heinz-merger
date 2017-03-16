@@ -16,8 +16,10 @@ class Range extends Component {
       center: null,
       rangeOverlayPosition: null,
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.sendChangeTrackingEvent = _.debounce(this.sendChangeTrackingEvent.bind(this), 500);
   }
 
   componentDidMount() {
@@ -60,6 +62,19 @@ class Range extends Component {
     });
 
     this.props.onSubmit(label, num, category);
+
+    this.sendChangeTrackingEvent(label, num, category)
+  }
+
+  sendChangeTrackingEvent(label, num, category) {
+    // ga analytics for when someone uses a slider (records if user has stopped sliding for 500ms)
+    ga('send', {
+      hitType: 'event',
+      eventCategory: 'range',
+      eventAction: category,
+      eventLabel: `${label}-${num}`,
+      transport: 'beacon',
+    });
   }
 
   handleResize() {
