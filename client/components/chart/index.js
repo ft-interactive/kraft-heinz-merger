@@ -326,6 +326,7 @@ class ColumnChart extends Component {
       <div>
         <div className="renderedD3" ref={(node) => { this.node = node; }}>
           {this.state.chart}
+          <a data-trackable="a11y-skip-to-chart-table" className="n-util-visually-hidden" href="#heatmap">Skip to chart values</a>
         </div>
       </div>
     );
