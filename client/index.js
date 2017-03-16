@@ -84,6 +84,38 @@ class App extends Component {
     });
 
     window.addEventListener('resize', this.handleResize, 500);
+
+    // google analytics events
+    // if someone opens up option to customize individual companies
+    document.querySelector('#individual-companies-drawer').addEventListener('click', (e) => {
+      let eventAction = 'collapse';
+      if (e.target.getAttribute('aria-expanded') === 'true') {
+        eventAction = 'expand';
+      }
+
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'click',
+        eventAction,
+        eventLabel: 'individual-companies-drawer',
+        transport: 'beacon',
+      });
+    });
+
+    // if someone clicks on "use default values" button in the individual companies drawer
+    const resetButtons = document.querySelectorAll('.company-slider-container__company-name button');
+    Array.from(resetButtons).forEach((button) => {
+      button.addEventListener('click', () => {
+        const eventLabel = button.getAttribute('data-companyname');
+        ga('send', {
+          hitType: 'event',
+          eventCategory: 'use-default-values-button',
+          eventAction: 'click',
+          eventLabel,
+          transport: 'beacon',
+        });
+      });
+    });
   }
 
   handleResize() {
@@ -273,7 +305,7 @@ class App extends Component {
       return (<div className="company-slider-container" key={`${d.category}-company-slider-container`}>
         <div className="company-slider-container__company-name">
           {d.category}
-          <button className="o-buttons o-buttons--small o-buttons--uncolored" onClick={() => this.removeCompany(d.category)}>Use default values</button>
+          <button className="o-buttons o-buttons--small o-buttons--uncolored" data-companyname={d.category} onClick={() => this.removeCompany(d.category)}>Use default values</button>
         </div>
         <Range
           category={d.category}
@@ -400,7 +432,7 @@ class App extends Component {
                     {individualCompanySliders}
                   </div>
                 </div>
-                <a className="o-expander__toggle o--if-js">Options</a>
+                <a className="o-expander__toggle o--if-js" id="individual-companies-drawer">Options</a>
               </div>
             </div>
           </div>
