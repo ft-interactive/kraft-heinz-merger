@@ -115,18 +115,22 @@ class Range extends Component {
             >
               <input
                 className={(this.props.customValues ? 'custom-values' : '')}
-                id={this.props.labelName}
+                id={`${this.props.category}-${this.props.labelName}`}
                 type="range"
                 min={this.props.min}
                 max={this.props.max}
                 step={this.props.step}
                 value={this.state.value}
+                aria-valuemin={this.props.min}
+                aria-valuemax={this.props.max}
+                aria-valuenow={this.state.value}
                 onChange={event => this.handleChange(this.props.labelName, event.target.value, this.props.category)}
                 disabled={this.state.rangeDisabled}
                 ref={(node) => { this.rangeInput = node; }}
               />
 
               <output
+                htmlFor={`${this.props.category}-${this.props.labelName}`}
                 style={{ left: `${this.state.rangeOverlayPosition - 5}px` }}
                 ref={(node) => { this.output = node; }}
               >
@@ -141,7 +145,7 @@ class Range extends Component {
 
           <div className="sub-labels-container">
             <div className="sub-labels sub-labels-c">
-              <label htmlFor={this.props.labelName}>
+              <label htmlFor={`${this.props.category}-${this.props.labelName}`}>
                 <span>{this.props.label}</span>
               </label>
             </div>
