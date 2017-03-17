@@ -1,11 +1,11 @@
 export default () => ({ // eslint-disable-line
 
   // link file UUID
-  id: '',
+  id: 'be72db98-0b25-11e7-97d1-5e720a26771b',
 
   // canonical URL of the published page
-  // https://ig.ft.com/sites/kraft-acquisitions get filled in by the ./configure script
-  url: 'https://ig.ft.com/sites/kraft-acquisitions',
+  // https://ig.ft.com/kraft-heinz-merger/ get filled in by the ./configure script
+  url: 'https://ig.ft.com/kraft-heinz-merger/',
 
   // To set an exact publish date do this:
   //       new Date('2016-05-17T17:11:22Z')
