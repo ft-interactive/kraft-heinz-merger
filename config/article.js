@@ -62,18 +62,18 @@ export default () => ({ // eslint-disable-line
   */
   // General social
   // socialImage: '',
-  // socialHeadline: '',
-  // socialSummary:  '',
+  socialHeadline: 'The merger model: Make your predictions about the next prey for Kraft Heinz',
+  // socialSummary: '',
 
   // TWITTER
   // twitterImage: '',
   // twitterCreator: '@individual's_account',
-  // tweetText:  '',
-  // twitterHeadline:  '',
+  tweetText: 'The merger model: Make your predictions about the next prey for Kraft Heinz',
+  twitterHeadline: 'The merger model: the next Kraft Heinz target',
 
   // FACEBOOK
   // facebookImage: '',
-  // facebookHeadline: '',
+  facebookHeadline: 'The merger model: the next Kraft Heinz target',
 
   tracking: {
 
