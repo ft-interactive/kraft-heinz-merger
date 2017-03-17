@@ -42,10 +42,10 @@ export default () => ({ // eslint-disable-line
   ],
 
   // Appears in the HTML <title>
-  title: '',
+  title: 'The merger model: the next Kraft Heinz target',
 
   // meta data
-  description: '',
+  description: 'Make your predictions about the next prey for the food giant',
 
   /*
   TODO: Select Twitter card type -
