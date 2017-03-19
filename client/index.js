@@ -36,7 +36,7 @@ class App extends Component {
     };
 
     this.state.data = this.state.constantCompanyData.map((d) => {
-      const enterpriseValue = ((d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest']) / d['USD/ Euro exchange rate'];
+      const enterpriseValue = ((d['Current stock price'] * d['shares outstanding']) + d['Net Debt'] + d['Minority Interest']) * d['USD/ Euro exchange rate'];
       const epsAccretion = null;
       const debtEBITDA = null;
       const buffett3GOwnership = null;
