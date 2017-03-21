@@ -61,18 +61,18 @@ export default () => ({ // eslint-disable-line
         optional social meta data?
   */
   // General social
-  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2F9b9fff1e-0b44-11e7-97d1-5e720a26771b.img?source=ig&width=1200',
+  socialImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2F3120b48e-0dc0-11e7-b030-768954394623.img?source=ig&width=1200',
   socialHeadline: 'The merger model: Make your predictions about the next prey for Kraft Heinz',
   // socialSummary: '',
 
   // TWITTER
-  twitterImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2F9b9fff1e-0b44-11e7-97d1-5e720a26771b.img?source=ig&width=1200',
+  twitterImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2F3120b48e-0dc0-11e7-b030-768954394623.img?source=ig&width=1200',
   // twitterCreator: '@individual's_account',
   tweetText: 'The merger model: Make your predictions about the next prey for Kraft Heinz',
   twitterHeadline: 'The merger model: the next Kraft Heinz target',
 
   // FACEBOOK
-  facebookImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2F9b9fff1e-0b44-11e7-97d1-5e720a26771b.img?source=ig&width=1200',
+  facebookImage: 'https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fim.ft-static.com%2Fcontent%2Fimages%2F3120b48e-0dc0-11e7-b030-768954394623.img?source=ig&width=1200',
   facebookHeadline: 'The merger model: the next Kraft Heinz target',
 
   tracking: {
