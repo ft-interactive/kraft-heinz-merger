@@ -455,7 +455,7 @@ class App extends Component {
             <Card
               data={debtEBITDAData}
               yHighlight={6}
-              text={'Typically net debt/EBITDA of more than 6 times is considered high. Kraft Heinz\'s standalone net debt to estimated 2017 EBITDA ratio is 3.4 times and it has the lowest investment grade credit rating. Acquiring Unilever would likely have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
+              text={'Typically net debt/EBITDA of more than six times runs into regulatory issues. Kraft Heinz\'s standalone net debt to estimated 2017 EBITDA ratio is 3.4 times and it has the lowest investment grade credit rating. Acquiring Unilever would likely have required a Buffett/3G cash infusion even greater than the $15bn contemplated here.'}
               headline={'2. Kraft Heinz leverage'}
               subhead={'Net debt/estimated 2017 EBITDA, values based on your inputs above'}
             />
