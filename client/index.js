@@ -363,7 +363,7 @@ class App extends Component {
             <h2 className="o-typography-heading3">Choose a target and name your price</h2>
             <div className="o-grid-row">
               <div data-o-grid-colspan="12 L9">
-                <p>Kraft Heinz must pay enough to convince a target company to sell but also  guard against using too much debt to fund the purchase. Any deal will also require a bundle of new equity, with shares to be issued to the Kraft Heinz 50.1 per cent backers, 3G and Warren Buffett, and also to the target shareholders. </p>
+                <p>Kraft Heinz must pay enough to convince a target company to sell but also guard against taking on too much debt to fund the purchase. Any deal will also require a bundle of new equity, with shares to be issued to 3G and Warren Buffett, who control 50.1 per cent of Kraft Heinz, and to the target shareholders.</p>
 
                 <p>Using the sliding bars below, choose:</p>
               </div>
@@ -445,7 +445,7 @@ class App extends Component {
             </div>
             <Card
               data={epsAccretionData}
-              text={'The goal of many acquirers is to increase earnings per share. Kraft Heinz will acquire the target company\'s net income but will also owe interest on the new debt.  As new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G, this will cause further dilution. This calculation makes it obvious why Kraft Heinz ambitiously pursued Unilever: because of the sheer size of its earnings base. Another important factor is the relative valuation of a target company. Colgate-Palmolive, for example, is a $70bn company that trades at 23 times earnings even without any takeover premium, making it likely to dilute Kraft Heinz earnings on acquisition. Readers will note that as Kraft Heinz issues more stock as consideration, earnings are boosted, all things held constant. This is because Kraft\'s P/E ratio of 22x, is a relatively stronger currency than new debt issued at a pre-tax interest rate of 8%.'}
+              text={'The goal of many acquirers is to increase earnings per share. Kraft Heinz will acquire the target company\'s net income but will also owe interest on the new debt.  As new Kraft Heinz shares will also have to be issued to the target\'s shareholders and to Buffett/3G, this will cause further dilution. This calculation makes it obvious why Kraft Heinz ambitiously pursued Unilever: because of the sheer size of its earnings base. Another important factor is the relative valuation of a target company. Colgate-Palmolive, for example, is a $70bn company that trades at 23 times earnings even without any takeover premium, making it likely to dilute Kraft Heinz earnings on acquisition. Readers will note that as Kraft Heinz issues more stock as consideration, earnings are boosted, all other things held constant. This is because Kraft\'s P/E ratio of 22x, is a relatively stronger currency than new debt issued at a pre-tax interest rate of 8%.'}
               headline={'1. Impact on Kraft Heinz 2018 earnings'}
               subhead={'Change to 2018 earnings (%), values based on your inputs above'}
             />
