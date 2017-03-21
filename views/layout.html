@@ -61,10 +61,11 @@
     {% endif %}
     <script async>queue('https://origami-build.ft.com/v2/bundles/js?export=oFooter&modules=o-footer@^5.0.1', null, true)</script>
 
+    <script src="https://origami-build.ft.com/v2/bundles/js?modules=o-date@^2.6.0,o-expander@^4.2.2,o-icons@^5.3.0,o-buttons@^4.5.4"></script>
+
     <script async>
     queue([
       'index.js',
-      'https://origami-build.ft.com/v2/bundles/js?modules=o-date@^2.6.0,o-expander@^4.2.2,o-icons@^5.3.0,o-buttons@^4.5.4',
       {% if scripts %}{% for script in scripts %}
       ,'{{ script | safe }}'
       {% endfor %}{% endif %}
