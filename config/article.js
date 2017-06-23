@@ -17,12 +17,12 @@ export default () => ({ // eslint-disable-line
   summary: 'Make your predictions about the next prey for the food giant',
 
   topic: {
-    name: '',
+    name: 'Mergers & Acquisitions',
     url: 'https://www.ft.com/stream/sectionsId/Mjk=-VG9waWNz',
   },
 
   relatedArticle: {
-    // text: 'Related article »',
+    // text: 'Related article »',
     // url: 'https://en.wikipedia.org/wiki/Politics_and_the_English_Language',
   },
 
@@ -37,6 +37,8 @@ export default () => ({ // eslint-disable-line
   // Byline can by a plain string, markdown, or array of authors
   // if array of authors, url is optional
   byline: [
+    { name: 'Sujeet Indap', url: 'https://www.ft.com/stream/authorsId/Q0ItMDMzNDMwNw==-QXV0aG9ycw==' },
+    { name: 'Joanna S Kao', url: 'https://www.ft.com/stream/authorsId/NWRlMDQ0Y2MtODA3Mi00N2VlLWEyZGItNWRmYTZhNDNiNWNi-QXV0aG9ycw==' },
   ],
 
   // Appears in the HTML <title>
